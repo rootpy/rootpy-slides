@@ -169,16 +169,30 @@
 %% rootpy intro
 
 \frame{
-    \frametitle{rootpy: making ROOT more Python-friendly}
+    \frametitle{rootpy: Making ROOT more Python-friendly}
     
     \begin{center}
     \includegraphics[height=.7\textheight]{figs/rootpy-map.png}
     \end{center}
 }
 
-\frame{
-    \frametitle{rootpy: setup}
-}
+\begin{frame}[fragile]
+    \frametitle{rootpy: Installation}
+
+    \begin{enumerate}
+        \itemsep=.3cm
+        \item First install ROOT with python support enabled (PyROOT)
+        \item Clone the rootpy repository with git:\\
+            \hspace{1cm} git clone git://github.com/rootpy/rootpy.git
+        \item or checkout with svn:\\
+            \hspace{1cm} svn checkout http://svn.github.com/rootpy/rootpy
+        \item Install:\\
+            \hspace{1cm} cd rootpy\\
+            \hspace{1cm} python setup.py install --user
+        \item See the
+                \href{https://github.com/rootpy/rootpy/blob/master/README.rst}{README} on github for full instructions.
+    \end{enumerate}
+\end{frame}
 
 \frame{
     \frametitle{rootpy: design \& philosophy}
