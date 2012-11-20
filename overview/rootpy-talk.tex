@@ -24,7 +24,7 @@
     \begin{itemize}
         \item Why Python?
         \item Scientific Python packages
-        \item Why rootpy: The need for a more Pythonic API and 
+        \item What is rootpy? A more Pythonic API and 
             integration into the scientific Python ecosystem.
         \end{itemize}
 \end{block}
@@ -39,10 +39,25 @@
 
 }
 
+\begin{frame}[fragile]
+    \frametitle{About Me}
+    
+    \begin{quote}
+    ``Hello world! I am a PhD student in High Energy Physics at Simon Fraser
+    University looking for the Higgs boson as a member of the ATLAS
+    collaboration at CERN. I use Python and rootpy for the processing and
+    analysis of terabytes of data on the Worldwide LHC Computing Grid and our
+    institute's local cluster.''\\
+
+    \hfill - Noel Dawe, 2012
+    \end{quote}
+
+\end{frame}
+
 %%% Python Intro
 
 \frame{
-    \frametitle{Why Python?}
+    \frametitle{Why Python and rootpy?}
     \begin{block}{Status quo}
         \begin{itemize}
             \item Write large portions of analysis code in CINT macros.
@@ -121,9 +136,6 @@
     costs.''
 }
 
-\frame{
-    \frametitle{CINT vs [I]Python}
-}
 
 \frame{
     \frametitle{Python: Scientific Applications}
@@ -152,7 +164,12 @@
 
 \frame{
     \frametitle{rootpy: making ROOT more Python-friendly}
-
+    
+    \begin{center}
+    \includegraphics[height=.7\textwidth]{figs/rootpy-map.png}
+    \end{center}
+    
+    cern is not official software, separate repository on github
 }
 
 \frame{
@@ -168,8 +185,30 @@
 }
 
 \frame{
-    \frametitle{Summary and Conclusions}
+    \frametitle{Summary and Outlook}
+    
+    Future dev plans
+    Better IPython support.
+    Online documentation and tutorials.
+    ROOT 6? Python 3?
+    Maybe someday an officially supported extension of ROOT?
+}
 
+\frame{
+    \begin{Huge}
+        Extras
+    \end{Huge}
+}
+
+\frame{
+    \frametitle{CINT vs rootpy}
+
+    % table of comparisons
+    % opening a file
+    % getting a histogram from the file
+    % looking at bin contents
+    % setting style attributes
+    % reading a tree  
 }
 
 \end{document}
