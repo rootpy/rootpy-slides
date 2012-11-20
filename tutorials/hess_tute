@@ -1,0 +1,42 @@
+ls
+from rootpy.io import open as ropen
+f = ropen('EffectiveAreas.root')
+f.ls()
+h = f.Get('EffArea_TrueEnergy_muon104_28telp_0azm_0deg_1.5off_Func')
+h
+a0 = f.Get('EffArea_TrueEnergy_muon104_28telp_0azm_0deg_1.5off_Func')
+a60 = f.Get('EffArea_TrueEnergy_muon104_28telp_0azm_60deg_1.5off_Func')
+a0.Draw()
+a0.fillstyle ='\\'
+a60.fillstyle = '/'
+a0.draw()
+a60.draw('same')
+a60.draw()
+a0.draw('same')
+from rootpy.plotting import Canvas
+c = Canvas()
+a60.draw()
+a0.draw('same')
+a30 = f.Get('EffArea_TrueEnergy_muon104_28telp_0azm_30deg_1.5off_Func')
+a40 = f.Get('EffArea_TrueEnergy_muon104_28telp_0azm_40deg_1.5off_Func')
+a30.draw()
+a30.fillstyle = '\\'
+a40.fillstyle = '/'
+a30.draw()
+a40.draw()
+a30.draw()
+a40.draw('same')
+d = Canvas()
+(a40 / a30).draw()
+from rootpy.plotting import root2matplotlib as rplt
+from matplotlib import pyplot as plt
+plt.figure()
+rplt(a40)
+rplt.hist(a40)
+plt.show()
+a40.fillcolor = 'white'
+rplt.hist(a40)
+plt.show()
+%hist -n
+%hist
+

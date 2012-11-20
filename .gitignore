@@ -1,0 +1,11 @@
+*.log
+*.aux
+*.fls
+*.nav
+*.snm
+*.toc
+*.make
+*.d
+*.temp
+*.out
+*.pdf

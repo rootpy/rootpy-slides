@@ -1,0 +1,132 @@
+\documentclass[hyperref={pdfpagelabels=false},professionalfonts,10pt,serif,table,xcolor=dvipsnames]{beamer}
+
+\include{preamble}
+\include{phys_defs}
+\usepackage{listings}
+
+\title{rootpy: ROOT data analysis from Python}
+%\subtitle{I have no subtitle}
+\author[Noel*, Christoph]{Noel Dawe, Christoph Deil}
+\date[\today]{\today}
+\institute[rootpy dev]{for the rootpy dev team}
+\titlegraphic{\includegraphics[height=3cm]{../common/images/rootpy_logo.png}}
+
+\begin{document}
+
+\frame{\titlepage}
+
+%% Main Intro
+
+\frame{
+\frametitle{Introduction}
+
+\begin{block}{Overview of ROOT in Python and rootpy}
+    \begin{itemize}
+        \item Why Python?
+        \item Scientific Python packages
+        \item Why rootpy: The need for a more Pythonic API and 
+            integration into the scientific Python ecosystem.
+        \end{itemize}
+\end{block}
+
+\begin{block}{Tutorials: Getting started with Python and rootpy}
+    \begin{itemize}
+        \item Getting and installing rootpy
+        \item Python basics and overview of scientific Python packages
+        \item rootpy examples
+    \end{itemize}
+\end{block}
+
+}
+
+%%% Python Intro
+
+\frame{
+    \frametitle{Why Python?}
+    \begin{block}{Status quo}
+        \begin{itemize}
+            \item Write large portions of analysis code in CINT macros.
+            \item Very restricted to what ROOT provides and ROOT-based
+                collaboration software.
+            \item Often spend more time debugging your code (or someone else's
+                code\ldots) than performing data analysis.
+        \end{itemize}
+    \end{block}
+    \begin{block}{A better world}
+        \begin{itemize}
+            \item Use an actual scripting language for high-level analysis:
+                Python.
+            \item Avoid common pitfalls when working with a low-level
+                programming language: increased productivity.
+            \item Increased portability of the data formats into other forms
+            \item Use large feature-rich and fast libraries for computationally
+                intensive tasks: NumPy, SciPy, scikit-learn, astropy,
+                PyTables, matplotlib\ldots
+            \item Perform complicated analysis more efficiently while writing
+                less code. Resulting code is often more readable by others
+                too\ldots
+        \end{itemize}
+    \end{block}
+}
+
+\frame{
+    \frametitle{Python Philosophy}
+}
+
+\frame{
+    \frametitle{Python Basics}
+}
+
+\frame{
+    \frametitle{CINT vs [I]Python}
+}
+
+\frame{
+    \frametitle{Scientific Python}
+}
+
+%% rootpy intro
+
+\frame{
+    \frametitle{rootpy}
+
+    \begin{itemize}
+        \item A pythonic layer on top of ROOT's PyROOT bindings
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{rootpy: setup}
+}
+
+\frame{
+    \frametitle{rootpy: design \& philosophy}
+}
+
+\frame{
+    \frametitle{rootpy: examples}
+}
+
+\frame{
+    \frametitle{rootpy: integration within the scientific Python world}
+    \begin{itemize}
+        \item NumPy
+        \item matplotlib
+        \item PyTables \& HDF5
+        \item scikit.learn
+        \item satrapy.io.fits and FITS
+    \end{itemize}
+
+hassle to use from ROOT. Now with rootpy it is simple to do any conversions via numpy arrays:
+http://docs.astropy.org/en/latest/io/fits/index.html
+
+%\lstinputlisting{code/fits.py}
+
+}
+
+\frame{
+    \frametitle{Summary and Conclusions}
+
+}
+
+\end{document}
