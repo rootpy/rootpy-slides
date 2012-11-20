@@ -115,6 +115,10 @@
 
 \frame{
     \frametitle{Python Basics}
+    \href{www.python.org}{www.python.org}: ``Python is a programming language that lets you work more
+    quickly and integrate your systems more effectively. You can learn to use
+    Python and see almost immediate gains in productivity and lower maintenance
+    costs.''
 }
 
 \frame{
@@ -122,17 +126,33 @@
 }
 
 \frame{
-    \frametitle{Scientific Python}
+    \frametitle{Python: Scientific Applications}
+    \begin{itemize}
+        \item Interactive computing: \href{http://ipython.org/}{IPython}
+        \item Powerful and fast array manipulation:
+            \href{http://numpy.scipy.org/}{NumPy}
+        \item Efficiently and easily handle large amounts of data:
+            \href{http://www.pytables.org/moin}{PyTables}
+        \item General scientific library: \href{http://www.scipy.org/}{scipy}
+        \item Data analysis and modeling: \href{http://pandas.pydata.org/}{pandas}
+        \item Statistical models and tests: \href{http://statsmodels.sourceforge.net/}{statsmodels}
+        \item Fitting: \href{http://cxc.harvard.edu/sherpa4.4/index.html}{sherpa}
+        \item Atronomy: \href{http://www.astropy.org/}{astropy}
+        \item Machine learning:
+            \href{http://scikit-learn.org/stable/}{scikit-learn}
+        \item Feature-rich plotting: \href{http://matplotlib.org/}{matplotlib}
+        \item ROOT data analysis:
+            \href{http://root.cern.ch/drupal/content/pyroot}{PyROOT} (Python
+            bindings only) and \href{http://rootpy.org/}{rootpy} (pythonic layer
+            on top of PyROOT)
+    \end{itemize}
 }
 
 %% rootpy intro
 
 \frame{
-    \frametitle{rootpy}
+    \frametitle{rootpy: making ROOT more Python-friendly}
 
-    \begin{itemize}
-        \item A pythonic layer on top of ROOT's PyROOT bindings
-    \end{itemize}
 }
 
 \frame{
@@ -145,23 +165,6 @@
 
 \frame{
     \frametitle{rootpy: examples}
-}
-
-\frame{
-    \frametitle{rootpy: integration within the scientific Python world}
-    \begin{itemize}
-        \item NumPy
-        \item matplotlib
-        \item PyTables \& HDF5
-        \item scikit.learn
-        \item satrapy.io.fits and FITS
-    \end{itemize}
-
-hassle to use from ROOT. Now with rootpy it is simple to do any conversions via numpy arrays:
-http://docs.astropy.org/en/latest/io/fits/index.html
-
-%\lstinputlisting{code/fits.py}
-
 }
 
 \frame{
