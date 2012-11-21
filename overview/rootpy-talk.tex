@@ -2,7 +2,7 @@
 
 \include{preamble}
 \include{phys_defs}
-\usepackage{listings}
+\include{examples/pygments}
 
 \title{rootpy: ROOT data analysis from Python}
 %\subtitle{I have no subtitle}
@@ -139,6 +139,17 @@
     quickly and integrate your systems more effectively. You can learn to use
     Python and see almost immediate gains in productivity and lower maintenance
     costs.''
+    
+    \vspace{.5cm}
+    \begin{itemize}
+        \item Designed to be easy to learn and read (clean syntax)
+        \item Dynamically typed
+        \item Portable: the interpreter uses machine-independent byte-code
+        \item Extensible with C/C++
+        \item High-level datatypes are built-in
+        \item Large \href{http://docs.python.org/2/library/}{standard library} and 
+            many \href{http://pypi.python.org/pypi}{third-party packages}
+    \end{itemize}
 }
 
 
@@ -190,7 +201,9 @@
         \item rootpy does not aim to reproduce ROOT in Python
         but rather provide a layer on top of PyROOT that integrates more
         naturally with Python:
+        \vspace{.2cm}
         \begin{itemize}
+            \itemsep=.2cm
             \item Setting and getting parameters with simple attributes:\\
                 {\bf hist.linecolor = `red'}
             \item Simple navigation through TFiles:\\
@@ -201,6 +214,14 @@
             \item Arithmetic operators that are otherwise not implemented in
                 PyROOT are implemented in rootpy
         \end{itemize}
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{rootpy: design \& philosophy}
+
+    \begin{itemize}
+        \itemsep=.2cm
         \item rootpy classes simply inherit from the corresponding ROOT classes
             and may override methods to add functionality or be decorated with
             additional attributes
@@ -209,6 +230,11 @@
             but instead of having many histogram classes rootpy has three: Hist,
             Hist2D, Hist3D with a type argument in the constructor that controls
             which ROOT.THX is inherited from.
+        \item Anywhere Python is typically slow (looping) is instead compiled as a C extension
+            module. rootpy provides very fast conversion of ROOT Trees into
+            NumPy arrays as well as efficiently filling ROOT histograms with
+            NumPy arrays.
+
     \end{itemize}
 }
 
@@ -234,32 +260,38 @@
     \end{enumerate}
 \end{frame}
 
-\frame{
+\begin{frame}[fragile]
     \frametitle{rootpy example: opening a TFile}
-}
+    \include{examples/file}
+\end{frame}
 
-\frame{
+\begin{frame}[fragile]
     \frametitle{rootpy example: retrieving and plotting a histogram}
-}
+    \begin{footnotesize}
+    \include{examples/hist}
+    \end{footnotesize}
+\end{frame}
 
-\frame{
+\begin{frame}[fragile]
     \frametitle{rootpy example: filling a TTree}
-}
+    \begin{footnotesize}
+    \include{examples/tree}
+    \end{footnotesize}
+\end{frame}
 
 \frame{
-    \frametitle{rootpy example: looping on a TTree}
-}
-
-\frame{
-    \frametitle{Summary and Outlook}
+    \frametitle{Summary}
     
     \begin{itemize}
         \item Python is a very powerful language for high-level analysis
         \item rootpy provides a more pythonic way of using ROOT in Python and
             the freedom to interface with a large and growing collection of very
             powerful scientific python packages.
-        \item rootpy is still a work in progress.
-        \item We have plans for many new features as well as addressing current issues
+    \end{itemize}
+    \begin{block}{Outlook}
+    \begin{itemize}
+        \item rootpy is still a work in progress many new features are currently
+            under development.
         \item Python 3 is becoming more mainstream -- support for this in rootpy
             will be required.
         \item Better integration with the IPython prompt: full tab completion
@@ -272,6 +304,7 @@
         \item Improve our online documentation and tutorials.
         \item Maybe someday an officially supported extension of ROOT?
     \end{itemize}
+    \end{block}
 }
 
 %\frame{

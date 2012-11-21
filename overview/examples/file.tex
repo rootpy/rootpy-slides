@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from} \PY{n+nn}{rootpy.io} \PY{k+kn}{import} \PY{n+nb}{open} \PY{k}{as} \PY{n}{ropen}
+
+\PY{k}{with} \PY{n}{ropen}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{file.root}\PY{l+s}{'}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+    \PY{n}{myhist} \PY{o}{=} \PY{n}{f}\PY{o}{.}\PY{n}{somedirectory}\PY{o}{.}\PY{n}{histname}
+
+    \PY{c}{\PYZsh{} recursively walk through the file}
+    \PY{k}{for} \PY{n}{path}\PY{p}{,} \PY{n}{dirs}\PY{p}{,} \PY{n}{objects} \PY{o+ow}{in} \PY{n}{f}\PY{o}{.}\PY{n}{walk}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+        \PY{c}{\PYZsh{} do something}
+        \PY{k}{pass}
+\end{Verbatim}
