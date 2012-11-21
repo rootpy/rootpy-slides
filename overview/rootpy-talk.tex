@@ -31,6 +31,7 @@
 
 \begin{block}{Tutorials: Getting started with Python and rootpy}
     \begin{itemize}
+        \item 2pm Glaskasten, Bothe-Lab
         \item Getting and installing rootpy
         \item Python basics and overview of scientific Python packages
         \item rootpy examples
@@ -171,32 +172,67 @@
 \frame{
     \frametitle{rootpy: Making ROOT more Python-friendly}
     
+    \begin{Large}
+    \begin{center}
+    \href{http://www.rootpy.org}{www.rootpy.org}
+    \end{center}
+    \end{Large}
+
     \begin{center}
     \includegraphics[height=.7\textheight]{figs/rootpy-map.png}
     \end{center}
 }
 
+\frame{
+    \frametitle{rootpy: design \& philosophy}
+
+    \begin{itemize}
+        \item rootpy does not aim to reproduce ROOT in Python
+        but rather provide a layer on top of PyROOT that integrates more
+        naturally with Python:
+        \begin{itemize}
+            \item Setting and getting parameters with simple attributes:\\
+                {\bf hist.linecolor = `red'}
+            \item Simple navigation through TFiles:\\
+                {\bf hist = myfile.somedirectory.otherdirectory.histname}
+            \item Support for Python exceptions and logging
+            \item Python has a garbage collector but C++ does not: leads to
+                strange issues in PyROOT. rootpy addresses these problems.
+            \item Arithmetic operators that are otherwise not implemented in
+                PyROOT are implemented in rootpy
+        \end{itemize}
+        \item rootpy classes simply inherit from the corresponding ROOT classes
+            and may override methods to add functionality or be decorated with
+            additional attributes
+        \item rootpy classes typically have the same name as ROOT classes with
+            the T removed
+            but instead of having many histogram classes rootpy has three: Hist,
+            Hist2D, Hist3D with a type argument in the constructor that controls
+            which ROOT.THX is inherited from.
+    \end{itemize}
+}
+
 \begin{frame}[fragile]
     \frametitle{rootpy: Installation}
+    
+    \begin{center}
+        {\bf Come to the tutorial at 2pm today}
+    \end{center}
 
     \begin{enumerate}
         \itemsep=.3cm
         \item First install ROOT with python support enabled (PyROOT)
-        \item Clone the rootpy repository with git:\\
-            \hspace{1cm} git clone git://github.com/rootpy/rootpy.git
-        \item or checkout with svn:\\
-            \hspace{1cm} svn checkout http://svn.github.com/rootpy/rootpy
-        \item Install:\\
-            \hspace{1cm} cd rootpy\\
-            \hspace{1cm} python setup.py install --user
+        \item Clone the rootpy repository with git:\\\vspace{.3cm}
+            \hspace{1cm} {\bf git clone git://github.com/rootpy/rootpy.git}
+        \item or checkout with svn:\\\vspace{.3cm}
+            \hspace{1cm} {\bf svn checkout http://svn.github.com/rootpy/rootpy}
+        \item Install:\\\vspace{.3cm}
+            \hspace{1cm} {\bf cd rootpy}\\
+            \hspace{1cm} {\bf python setup.py install --user}
         \item See the
                 \href{https://github.com/rootpy/rootpy/blob/master/README.rst}{README} on github for full instructions.
     \end{enumerate}
 \end{frame}
-
-\frame{
-    \frametitle{rootpy: design \& philosophy}
-}
 
 \frame{
     \frametitle{rootpy example: opening a TFile}
