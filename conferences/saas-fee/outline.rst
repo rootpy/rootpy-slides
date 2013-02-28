@@ -13,6 +13,13 @@ What's the problem?
 * Ad hoc workarounds implemented by many.
 * Lack of integration with other powerful scientific Python packages.
 
+Introducing rootpy
+==================
+
+* What rootpy is.
+* What rootpy is not.
+* Show how rootpy improves the examples shown in the previous section.
+
 What does rootpy offer?
 =======================
 
