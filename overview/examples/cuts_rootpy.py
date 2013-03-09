@@ -7,5 +7,9 @@ cut = cut1 & cut2
 print cut
 
 # expansion of ternary conditions
-cut = Cut('10 < a < 20')
+cut3 = Cut('10 < a < 20')
+print cut3
+
+# easily combine cuts arbitrarily
+cut = ((cut1 & cut2) | - cut3)
 print cut
