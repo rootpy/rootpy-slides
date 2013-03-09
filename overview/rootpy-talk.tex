@@ -4,184 +4,38 @@
 \include{phys_defs}
 \include{examples/pygments}
 
-\title{rootpy: ROOT data analysis from Python}
+\title{rootpy: Pythonic ROOT}
 %\subtitle{I have no subtitle}
 \author[Noel Dawe]{Noel Dawe}
 \date[\today]{\today}
-\institute[rootpy dev]{for the rootpy dev team}
+\institute[rootpy]{for the rootpy dev team}
 \titlegraphic{\includegraphics[height=3cm]{../common/images/rootpy_logo.png}}
 
 \begin{document}
 
 \frame{\titlepage}
 
-%% Main Intro
-
 \frame{
-\frametitle{Introduction}
-
-\begin{block}{Overview of ROOT in Python and rootpy}
-    \begin{itemize}
-        \item Why Python?
-        \item Scientific Python packages
-        \item What is rootpy? A more Pythonic API and 
-            integration into the scientific Python ecosystem.
-        \end{itemize}
-\end{block}
-
-\begin{block}{Tutorials: Getting started with Python and rootpy}
-    \begin{itemize}
-        \item 2pm Glaskasten, Bothe-Lab
-        \item Getting and installing rootpy
-        \item Python basics and overview of scientific Python packages
-        \item rootpy examples
-    \end{itemize}
-\end{block}
-
-}
-
-\begin{frame}[fragile]
-    \frametitle{Hello, World!}
+    \frametitle{What's the problem?}
     
     \begin{center}
-        \includegraphics[width=.9\textwidth]{figs/hep.png}
+    {\bf Why would we even consider developing a layer on top of PyROOT?}
     \end{center}
 
-    \begin{quote}
-    ``I am a PhD student in High Energy Physics at Simon Fraser
-    University searching for the Higgs boson as a member of the ATLAS
-    collaboration at CERN. I use Python and rootpy for the processing and
-    analysis of terabytes of data on the Worldwide LHC Computing Grid and our
-    institute's local cluster.''\\
-
-    \hfill - Noel Dawe, 2012
-    \end{quote}
-
-\end{frame}
-
-%%% Python Intro
-
-\frame{
-    \frametitle{Why Python and rootpy?}
-    \begin{block}{Status quo}
-        \begin{itemize}
-            \item Write large portions of analysis code in CINT macros.
-            \item Very restricted to what ROOT provides and ROOT-based
-                collaboration software.
-            \item Often spend more time debugging your code (or someone else's
-                code\ldots) than performing data analysis.
-        \end{itemize}
-    \end{block}
-    \begin{block}{A better world}
-        \begin{itemize}
-            \item Use an actual scripting language for high-level analysis:
-                Python.
-            \item Avoid common pitfalls when working with a low-level
-                programming language: increased productivity.
-            \item Increased portability of the data formats into other forms
-            \item Use large feature-rich and fast libraries for computationally
-                intensive tasks: NumPy, SciPy, scikit-learn, astropy,
-                PyTables, matplotlib\ldots
-            \item Perform complicated analysis more efficiently while writing
-                less code. Resulting code is often more readable by others
-                too\ldots
-        \end{itemize}
-    \end{block}
-}
-
-\frame{
-    \frametitle{Python Philosophy: The Zen of Python, by Tim Peters}
-
-{\footnotesize
-\begin{enumerate}
-    \item Beautiful is better than ugly.
-    \item Explicit is better than implicit.
-    \item Simple is better than complex.
-    \item Complex is better than complicated.
-    \item Flat is better than nested.
-    \item Sparse is better than dense.
-    \item Readability counts.
-    \item Special cases aren't special enough to break the rules.
-    \begin{enumerate}
-        {\footnotesize
-        \item Although practicality beats purity.
-        }
-    \end{enumerate}
-    \item Errors should never pass silently.
-    \begin{enumerate}
-        {\footnotesize
-        \item Unless explicitly silenced.
-        }
-    \end{enumerate}
-    \item In the face of ambiguity, refuse the temptation to guess.
-    \item There should be one-- and preferably only one --obvious way to do it.
-    \begin{enumerate}
-        {\footnotesize
-        \item Although that way may not be obvious at first unless you're Dutch.
-        }
-    \end{enumerate}
-    \item Now is better than never.
-    \begin{enumerate}
-        {\footnotesize
-        \item Although never is often better than right now.
-        }
-    \end{enumerate}
-    \item If the implementation is hard to explain, it's a bad idea.
-    \item If the implementation is easy to explain, it may be a good idea.
-    \item NameSpaces are one honking great idea -- let's do more of those!
-\end{enumerate}
-}
-}
-
-\frame{
-    \frametitle{Python Basics}
-    \href{www.python.org}{www.python.org}: ``Python is a programming language that lets you work more
-    quickly and integrate your systems more effectively. You can learn to use
-    Python and see almost immediate gains in productivity and lower maintenance
-    costs.''
-    
-    \vspace{.5cm}
     \begin{itemize}
-        \item Designed to be easy to learn and read (clean syntax)
-        \item Dynamically typed
-        \item Portable: the interpreter uses machine-independent byte-code
-        \item Extensible with C/C++
-        \item High-level datatypes are built-in
-        \item Large \href{http://docs.python.org/2/library/}{standard library} and 
-            many \href{http://pypi.python.org/pypi}{third-party packages}
-    \end{itemize}
+        \item PyROOT is mainly bindings with some pythonization.
+        \item Certain tasks require awkward code. Same workarounds are
+            implemented repetitively by many.
+        \item Python's dynamic nature provides many possibilities although not
+            currently realized by PyROOT.
+        \item There is a lack of integration of ROOT with the vast and growing 
+            ecosystem of scientific Python packages.
+        \end{itemize}
 }
 
 
 \frame{
-    \frametitle{Python: Scientific Applications}
-    \begin{itemize}
-        \item Interactive computing: \href{http://ipython.org/}{IPython}
-        \item Powerful and fast array manipulation:
-            \href{http://numpy.scipy.org/}{NumPy}
-        \item Efficiently and easily handle large amounts of data:
-            \href{http://www.pytables.org/moin}{PyTables}
-        \item General scientific library: \href{http://www.scipy.org/}{scipy}
-        \item Data analysis and modeling: \href{http://pandas.pydata.org/}{pandas}
-        \item Statistical models and tests: \href{http://statsmodels.sourceforge.net/}{statsmodels}
-        \item Fitting: \href{http://cxc.harvard.edu/sherpa4.4/index.html}{sherpa}
-        \item Atronomy: \href{http://www.astropy.org/}{astropy}
-        \item Machine learning:
-            \href{http://scikit-learn.org/stable/}{scikit-learn}
-        \item Feature-rich plotting: \href{http://matplotlib.org/}{matplotlib}
-        \item ROOT data analysis:
-            \href{http://root.cern.ch/drupal/content/pyroot}{PyROOT} (Python
-            bindings only) and \href{http://rootpy.org/}{rootpy} (pythonic layer
-            on top of PyROOT). rootpy is not official CERN software but is an
-            external community-driven project.
-            
-    \end{itemize}
-}
-
-%% rootpy intro
-
-\frame{
-    \frametitle{rootpy: Making ROOT more Python-friendly}
+    \frametitle{Introducing rootpy}
     
     \begin{Large}
     \begin{center}
@@ -239,28 +93,6 @@
 }
 
 \begin{frame}[fragile]
-    \frametitle{rootpy: Installation}
-    
-    \begin{center}
-        {\bf Come to the tutorial at 2pm today}
-    \end{center}
-
-    \begin{enumerate}
-        \itemsep=.3cm
-        \item First install ROOT with python support enabled (PyROOT)
-        \item Clone the rootpy repository with git:\\\vspace{.3cm}
-            \hspace{1cm} {\bf git clone git://github.com/rootpy/rootpy.git}
-        \item or checkout with svn:\\\vspace{.3cm}
-            \hspace{1cm} {\bf svn checkout http://svn.github.com/rootpy/rootpy}
-        \item Install:\\\vspace{.3cm}
-            \hspace{1cm} {\bf cd rootpy}\\
-            \hspace{1cm} {\bf python setup.py install --user}
-        \item See the
-                \href{https://github.com/rootpy/rootpy/blob/master/README.rst}{README} on github for full instructions.
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]
     \frametitle{rootpy example: opening a TFile}
     \include{examples/file}
 \end{frame}
@@ -280,65 +112,47 @@
 \end{frame}
 
 \frame{
-    \frametitle{Summary}
-    
+    \frametitle{The future of rootpy}
+
     \begin{itemize}
-        \item Python is a very powerful language for high-level analysis
-        \item rootpy provides a more pythonic way of using ROOT in Python and
-            the freedom to interface with a large and growing collection of very
-            powerful scientific python packages.
-    \end{itemize}
-    \begin{block}{Outlook}
-    \begin{itemize}
-        \item rootpy is still a work in progress many new features are currently
-            under development.
+        \item Larger documentation coverage. This is important!
+        \item More code examples.
         \item Python 3 is becoming more mainstream -- support for this in rootpy
             will be required.
         \item Better integration with the IPython prompt: full tab completion
             and addition of helpful builtin commands like pylab.
-        \item ROOT 6 will be coming out very soon. Cling will replace CINT.
-            See this recent
-            \href{http://indico.cern.ch/contributionDisplay.py?contribId=255&confId=149557}{talk at CHEP}.
-            PyROOT and hence rootpy will hopefully benifit from these major
-            ROOT developments. 
-        \item Improve our online documentation and tutorials.
-        \item Maybe someday an officially supported extension of ROOT?
-    \end{itemize}
-    \end{block}
+        \item Automatic wrapping of ROOT methods by parsing method signatures:
+            \begin{itemize}
+                \item If a method expects a TColor, rootpy can accept any matplotlib/ROOT color
+                      and convert it into a TColor before passing to the ROOT method.
+                \item Reduce the amount of code in rootpy.
+                \end{itemize}
+       \item TMVA:
+           \begin{itemize}
+                \item Feed TMVA NumPy arrays instead of TTrees. 
+                \end{itemize}
+       \item RooFit and RooStats:
+           \begin{itemize}
+                \item Wrap RooArgSet as set() and RooArgList as list()...
+                \item Create RooDataSets from NumPy arrays.
+                \end{itemize}
+   \end{itemize}
 }
 
 \frame{
-    \begin{center}
-        \begin{Huge}
-            rootpy
-        \end{Huge}
-    \end{center}
+    \frametitle{How can I contribute?}
+    
     \begin{itemize}
-        \itemsep=.3cm
-        \item See the documentation:
-            \href{http://www.rootpy.org}{http://www.rootpy.org}
-        \item Contribute on Github:
-            \href{https://github.com/rootpy/rootpy}{https://github.com/rootpy/rootpy}
+        \item We use Git! Development is community-driven.
+        \item Just fork rootpy into your own GitHub account and:
+    
+            \hspace{1cm} {\bf git clone git@github.com:[username]/rootpy.git}
+
+              Then submit a pull request with your contribution.
+        \item Contributions are reviewed by peers before merging into the main branch.
+        \item All new code is automatically tested against our test suite using
+            \href{https://travis-ci.org/}{Travis CI}
     \end{itemize}
 }
-
-%\frame{
-%    \begin{center}
-%    \begin{Huge}
-%        EXTRAS
-%    \end{Huge}
-%    \end{center}
-%}
-
-%\frame{
-%    \frametitle{CINT vs rootpy}
-%
-    % table of comparisons
-    % opening a file
-    % getting a histogram from the file
-    % looking at bin contents
-    % setting style attributes
-    % reading a tree  
-%}
 
 \end{document}

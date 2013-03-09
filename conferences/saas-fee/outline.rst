@@ -9,6 +9,7 @@ What's the problem?
 ===================
 
 * Highlight current deficiencies in ROOT with Python.
+* PyROOT is bindings only. A more pythonic interface is not implemented here.
 * Show concrete examples of "gotchas" and awkward code.
 * Ad hoc workarounds implemented by many.
 * Lack of integration with other powerful scientific Python packages.

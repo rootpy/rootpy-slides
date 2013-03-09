@@ -30,7 +30,7 @@
 #
 fileinfo	:= LaTeX Makefile
 author		:= Chris Monson
-version		:= 2.2.1-alpha9
+version		:= 2.2.1-alpha8
 #
 .DEFAULT_GOAL	:= all
 # Note that the user-global version is imported *after* the source directory,
@@ -117,9 +117,6 @@ onlysources.tex	?= rootpy-talk.tex
 #
 #
 # CHANGES:
-# Chris Monson (2012-06-25):
-# * Bumped version to 2.2.1-alpha9
-# * Built with Holger Dell's changes to fix multiple unnecessary compilations.
 # Chris Monson (2011-11-10):
 # * Issue 144: Help patch from girard.nicolas applied
 # Andrew McNabb (2011-09-30):
@@ -777,8 +774,8 @@ GUNZIP		?= gunzip	# GZipped EPS
 PSNUP		?= psnup
 # == Viewing Stuff ==
 VIEW_POSTSCRIPT	?= gv
-VIEW_PDF	?= evince
-VIEW_GRAPHICS	?= eog
+VIEW_PDF	?= acroread
+VIEW_GRAPHICS	?= display
 
 # Xindy glossaries
 XINDYLANG	?= english
@@ -911,25 +908,6 @@ GRAY	?= $(call get-default,$(GREY),)
 #
 # Utility Functions and Definitions
 #
-#
-# Transcript
-# For debug/testing purposes: writes a message to
-# filename.transcript.make for each command that was run, including
-# some human-readable justification for why it had to be run.
-# For example: "Running latex (log-file indicated that this is necessary)"
-# Set WRITE_TRANSCRIPT to something to activate
-WRITE_TRANSCRIPT ?=
-# Set reason for the next run call
-# $(call set-run-reason,message)
-set-run-reason = export run_reason="$1"
-# Log command to the transcript file
-# $(call set-run-reason,command,job_name)
-define transcript
-$(if $(WRITE_TRANSCRIPT), \
-	$(ECHO) "Running $1 ($$run_reason)" >> $2.transcript.make; \
-	export run_reason="", \
-	$(sh_true))
-endef
 
 # Don't call this directly - it is here to avoid calling wildcard more than
 # once in remove-files.
@@ -983,8 +961,6 @@ escape-fname-regex	= $(subst /,\\/,$(subst .,\\.,$1))
 # Test that a file exists
 # $(call test-exists,file)
 test-exists		= [ -e '$1' ]
-# $(call test-not-exists,file)
-test-not-exists   = [ ! -e '$1' ]
 
 # $(call move-files,source,destination)
 move-if-exists		= $(call test-exists,$1) && $(MV) '$1' '$2'
@@ -1894,7 +1870,7 @@ endef
 #
 # $(call die-on-no-aux,<aux stem>)
 define die-on-no-aux
-if $(call test-not-exists,$1.aux); then \
+if [ ! -e '$1.aux' ]; then \
 	$(call colorize-latex-errors,$1.log); \
 	$(ECHO) "$(C_ERROR)Error: failed to create $1.aux$(C_RESET)"; \
 	exit 1; \
@@ -2336,10 +2312,7 @@ $(SED) \
 enlarge_beamer	= $(PSNUP) -l -1 -W128mm -H96mm -pletter
 
 # $(call test-run-again,<source stem>)
-define test-run-again
-$(EGREP) '^(.*Rerun .*|No file $1\.[^.]+\.)$$' $1.log \
-| $(EGREP) -q -v '^(Package: rerunfilecheck.*Rerun checks for auxiliary files.*)$$'
-endef
+test-run-again	= $(EGREP) -q '^(.*Rerun .*|No file $1\.[^.]+\.)$$' $1.log
 
 # This tests whether the build target commands should be run at all, from
 # viewing the log file.
@@ -2348,8 +2321,7 @@ define test-log-for-need-to-run
 $(SED) \
 -e '/^No file $(call escape-fname-regex,$1)\.aux\./d' \
 $1.log \
-| $(EGREP) '^(.*Rerun .*|No file $1\.[^.]+\.|No file .+\.tex\.|LaTeX Warning: File.*)$$' \
-| $(EGREP) -q -v '^(Package: rerunfilecheck.*Rerun checks for auxiliary files.*)$$'
+| $(EGREP) -q '^(.*Rerun .*|No file $1\.[^.]+\.|No file .+\.tex\.|LaTeX Warning: File.*)$$'
 endef
 
 # LaTeX invocations
@@ -2363,8 +2335,7 @@ endef
 #
 # $(call latex,<tex file stem, e.g., $*>,[extra LaTeX args])
 define run-latex
-$(latex_build_program) -jobname='$1' -interaction=batchmode -file-line-error $(LATEX_OPTS) $(if $2,$2,) $1 > /dev/null; \
-$(call transcript,latex,$1)
+$(latex_build_program) -jobname='$1' -interaction=batchmode -file-line-error $(LATEX_OPTS) $(if $2,$2,) $1 > /dev/null
 endef
 
 # $(call latex-color-log,<LaTeX stem>)
@@ -2378,7 +2349,6 @@ then \
 	$(call colorize-makeindex-errors,$3); \
 	$(RM) -f '$2'; \
 	success=0; \
-	$(call transcript,makeindex,$1); \
 fi; \
 [ "$$success" = "1" ] && $(sh_true) || $(sh_false);
 endef
@@ -2390,7 +2360,6 @@ if ! $(XINDY) -q -o $2 -L $(XINDYLANG) -C $(XINDYENC) -I xindy -M $3 -t $4 $1 > 
 	$(call colorize-xindy-errors,$4); \
 	$(RM) -f '$2'; \
 	success=0; \
-	$(call transcript,xindy,$1); \
 fi; \
 [ "$$success" = "1" ] && $(sh_true) || $(sh_false);
 endef
@@ -2401,8 +2370,7 @@ endef
 #
 # $(call run-script,<interpreter>,<input>,<output>)
 define run-script
-$(call test-not-exists,$2.cookie) && $(ECHO) "restarts=$(RESTARTS)" \
-	> $2.cookie && $(ECHO) "level=$(MAKELEVEL)" >> $2.cookie; \
+[ ! -e '$2.cookie' ] && $(ECHO) "restarts=$(RESTARTS)" > $2.cookie && $(ECHO) "level=$(MAKELEVEL)" >> $2.cookie; \
 restarts=`$(SED) -n -e 's/^restarts=//p' $2.cookie`; \
 level=`$(SED) -n -e 's/^level=//p' $2.cookie`; \
 if $(EXPR) $(MAKELEVEL) '<=' $$level '&' $(RESTARTS) '<=' $$restarts >/dev/null; then \
@@ -2416,7 +2384,8 @@ endef
 # BibTeX invocations
 #
 # $(call run-bibtex,<tex stem>)
-run-bibtex	= $(BIBTEX) $1 | $(color_bib); $(call transcript,bibtex,$1)
+run-bibtex	= $(BIBTEX) $1 | $(color_bib)
+
 
 # $(call convert-eps-to-pdf,<eps file>,<pdf file>,[gray])
 # Note that we don't use the --filter flag because it has trouble with bounding boxes that way.
@@ -2889,29 +2858,24 @@ endif
 	run=0; \
 	for i in 1; do \
 		if $(call test-exists,$*.bbl.cookie); then \
-			$(call set-run-reason,$*.bbl.cookie is present); \
 			run=1; \
 			break; \
 		fi; \
 		if $(call test-exists,$*.run.cookie); then \
-			$(call set-run-reason,$*.run.cookie is present); \
 			run=1; \
 		    	break; \
 		fi; \
 		if $(call \
 		test-exists-and-different,$*.auxtarget.cookie,$*.auxtarget.make);\
 		then \
-			$(call set-run-reason,$*.auxtarget.cookie differs from $*.auxtarget.make); \
 			run=1; \
 			break; \
 		fi; \
 		if $(call test-log-for-need-to-run,$*); then \
-			$(call set-run-reason,$*.log indicated that this is necessary); \
 			run=1; \
 			break; \
 		fi; \
-		if $(call test-not-exists,$@.1st.make); then \
-			$(call set-run-reason,$@.1st.make does not exist); \
+		if [ ! -e $*.1st.*.make ]; then \
 			run=1; \
 			break; \
 		fi; \
@@ -2927,11 +2891,7 @@ endif
 			); \
 			$(call run-latex,$*); \
 			$(CP) '$*.log' '$*.'$(RESTARTS)-$$i'.log'; \
-			if $(call test-run-again,$*); then \
-				$(call set-run-reason,rerun requested by $*.log); \
-			else \
-				break; \
-			fi; \
+			$(call test-run-again,$*) || break; \
 		done; \
 	else \
 		$(MV) '$@.1st.make' '$@'; \
@@ -2955,7 +2915,6 @@ endif
 	$(QUIET)\
 	$(if $(filter %.bib,$^),\
 		$(call echo-build,$(filter %.bib,$?) $*.aux,$@); \
-		$(call set-run-reason,dependencies of $@ changed); \
 		$(call run-bibtex,$*); \
 		$(TOUCH) $@.cookie; \
 	) \
@@ -3208,7 +3167,6 @@ endif
 %.$(build_target_extension).1st.make %.d %.aux %.aux.make %.fls: %.tex
 	$(QUIET)$(call echo-build,$<,$*.d $*.$(build_target_extension).1st.make,$(RESTARTS)-1)
 	$(QUIET)\
-	$(call set-run-reason,need to build .d and .$(build_target_extension).1st.make); \
 	$(call run-latex,$*,-recorder) || $(sh_true); \
 	$(CP) '$*.log' '$*.$(RESTARTS)-1.log'; \
 	$(call die-on-import-sty,$*.log); \
