@@ -10,3 +10,6 @@
 *.out
 *.pdf
 *.vrb
+*.pyg.lst
+*.pyg.sty
+*.cookie

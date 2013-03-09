@@ -1,24 +1,15 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{from} \PY{n+nn}{rootpy.plotting} \PY{k+kn}{import} \PY{n}{Hist}\PY{p}{,} \PY{n}{Hist2D}\PY{p}{,} \PY{n}{Hist3D}
+\begin{footnotesize}
+\begin{pyglist}[language=python,texcl=true,style=vs,bgcolor=Moccasin]
+from ROOT import TH3D
+from array import array
 
-\PY{c}{\PYZsh{} create a 1D histogram}
-\PY{n}{h} \PY{o}{=} \PY{n}{Hist}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
-
-\PY{c}{\PYZsh{} 2D and 3D histograms are handled in the same way}
-\PY{c}{\PYZsh{} the constructor arguments are repetitions of \PYZsh{}bins, left bound, right bound.}
-\PY{n}{h2d} \PY{o}{=} \PY{n}{Hist2D}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{o}{-}\PY{l+m+mi}{40}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s}{'}\PY{l+s}{2d hist}\PY{l+s}{'}\PY{p}{)}
-\PY{n}{h3d} \PY{o}{=} \PY{n}{Hist3D}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{o}{-}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{o}{-}\PY{l+m+mi}{1000}\PY{p}{,} \PY{o}{-}\PY{l+m+mi}{200}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{l+s}{'}\PY{l+s}{3d hist}\PY{l+s}{'}\PY{p}{)}
-
-\PY{c}{\PYZsh{} variable-width bins may be created by passing the bin edges directly:}
-\PY{n}{h1d\PYZus{}variable} \PY{o}{=} \PY{n}{Hist}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}\PY{p}{)}
-\PY{n}{h2d\PYZus{}variable} \PY{o}{=} \PY{n}{Hist2D}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{o}{-}\PY{l+m+mi}{100}\PY{p}{,} \PY{o}{-}\PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{]}\PY{p}{)}
-\PY{n}{h3d\PYZus{}variable} \PY{o}{=} \PY{n}{Hist3D}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{20}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{o}{-}\PY{l+m+mi}{10}\PY{p}{,} \PY{o}{-}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{]}\PY{p}{)}
-
-\PY{c}{\PYZsh{} variable-width and constant-width bins can be mixed:}
-\PY{n}{h2d\PYZus{}mixed} \PY{o}{=} \PY{n}{Hist2D}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}
-
-\PY{c}{\PYZsh{} easily set visual attributes}
-\PY{n}{h}\PY{o}{.}\PY{n}{linecolor} \PY{o}{=} \PY{l+s}{'}\PY{l+s}{blue}\PY{l+s}{'}
-\PY{n}{h}\PY{o}{.}\PY{n}{fillcolor} \PY{o}{=} \PY{l+s}{'}\PY{l+s}{green}\PY{l+s}{'}
-\PY{n}{h}\PY{o}{.}\PY{n}{fillstyle} \PY{o}{=} \PY{l+s}{'}\PY{l+s}{/}\PY{l+s}{'}
-\end{Verbatim}
+# variable width bins
+hist3d = TH3D('3d', '3d', 3, array('d', [0, 3, 10, 100]),
+                          5, array('d', [2.3, 4.2, 5.8, 10, 20, 25.5]),
+                          2, array('d', [-100, 0, 20]))
+# ROOT is missing some constructors... (the following will not work)
+hist3d = TH3D('3d', '3d', 3, 0, 5,
+                          5, array('d', [2.3, 4.2, 5.8, 10, 20, 25.5]),
+                          2, array('d', [-100, 0, 20]))
+\end{pyglist}
+\end{footnotesize}

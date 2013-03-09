@@ -1,23 +1,25 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{from} \PY{n+nn}{rootpy.io} \PY{k+kn}{import} \PY{n+nb}{open}
-\PY{k+kn}{from} \PY{n+nn}{rootpy.tree} \PY{k+kn}{import} \PY{n}{Tree}\PY{p}{,} \PY{n}{TreeModel}
-\PY{k+kn}{from} \PY{n+nn}{rootpy.types} \PY{k+kn}{import} \PY{n}{FloatCol}\PY{p}{,} \PY{n}{IntCol}
-\PY{k+kn}{import} \PY{n+nn}{random}
+\begin{footnotesize}
+\begin{pyglist}[language=python,texcl=true,style=vs,bgcolor=Moccasin]
+from rootpy.io import open
+from rootpy.tree import Tree, TreeModel
+from rootpy.types import FloatCol, IntCol
+import random
 
-\PY{k}{class} \PY{n+nc}{Model}\PY{p}{(}\PY{n}{TreeModel}\PY{p}{)}\PY{p}{:}
-    \PY{n}{x} \PY{o}{=} \PY{n}{FloatCol}\PY{p}{(}\PY{n}{default}\PY{o}{=}\PY{o}{-}\PY{l+m+mf}{1.}\PY{p}{)}
-    \PY{n}{y} \PY{o}{=} \PY{n}{FloatCol}\PY{p}{(}\PY{p}{)}
-    \PY{n}{i} \PY{o}{=} \PY{n}{IntCol}\PY{p}{(}\PY{p}{)}
+class Model(TreeModel):
+    x = FloatCol(default=-1.)
+    y = FloatCol()
+    i = IntCol()
 
-\PY{n}{f} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{test.root}\PY{l+s}{'}\PY{p}{,} \PY{l+s}{'}\PY{l+s}{recreate}\PY{l+s}{'}\PY{p}{)}
-\PY{n}{tree} \PY{o}{=} \PY{n}{Tree}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s}{'}\PY{l+s}{test}\PY{l+s}{'}\PY{p}{,} \PY{n}{model}\PY{o}{=}\PY{n}{Model}\PY{p}{)}
+f = open('test.root', 'recreate')
+tree = Tree(name='test', model=Model)
 
-\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{xrange}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
-    \PY{n}{tree}\PY{o}{.}\PY{n}{x} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{gauss}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
-    \PY{n}{tree}\PY{o}{.}\PY{n}{y} \PY{o}{=} \PY{n}{random}\PY{o}{.}\PY{n}{gauss}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
-    \PY{n}{tree}\PY{o}{.}\PY{n}{i} \PY{o}{=} \PY{n}{i}
-    \PY{n}{tree}\PY{o}{.}\PY{n}{fill}\PY{p}{(}\PY{p}{)}
+for i in xrange(100):
+    tree.x = random.gauss(4, 3)
+    tree.y = random.gauss(2, 3)
+    tree.i = i
+    tree.fill()
 
-\PY{n}{tree}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{p}{)}
-\PY{n}{f}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
-\end{Verbatim}
+tree.write()
+f.close()
+\end{pyglist}
+\end{footnotesize}

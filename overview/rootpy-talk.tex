@@ -1,8 +1,7 @@
-\documentclass[hyperref={pdfpagelabels=false},professionalfonts,10pt,serif,table,xcolor=dvipsnames]{beamer}
+\documentclass[10pt,professionalfonts,serif,usenames,dvipsnames,svgnames,table]{beamer}
 
 \include{preamble}
 \include{phys_defs}
-\include{examples/pygments}
 
 \title{rootpy: Pythonic ROOT}
 %\subtitle{I have no subtitle}
@@ -99,16 +98,12 @@
 
 \begin{frame}[fragile]
     \frametitle{rootpy example: creating histograms}
-    \begin{footnotesize}
     \include{examples/hist}
-    \end{footnotesize}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{rootpy example: filling a TTree}
-    \begin{footnotesize}
     \include{examples/tree}
-    \end{footnotesize}
 \end{frame}
 
 \frame{
