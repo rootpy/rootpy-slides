@@ -12,7 +12,11 @@
 
 \begin{document}
 
-\frame{\titlepage}
+\frame{\titlepage
+    \begin{center}
+    {\bf ROOT Users Workshop, Saas-Fee}
+    \end{center}
+}
 
 \frame{
     \frametitle{What's the problem?}
@@ -23,10 +27,13 @@
 
     \begin{itemize}
         \item PyROOT is mainly bindings with some pythonization.
-        \item Certain tasks require awkward code. Same workarounds are
-            implemented repetitively by many.
-        \item Python's dynamic nature provides many possibilities although not
-            currently realized by PyROOT.
+        \item Certain tasks require awkward code or are error-prone.
+            Similar workarounds are implemented by many in multiple places.
+            Why not solve these issues once and for all?
+        \item Python's dynamic nature provides many possibilities not
+            currently realized by PyROOT. One might argue a majority of these
+            high-level pythonizations are beyond the scope of what PyROOT should
+            offer.
         \item There is a lack of integration of ROOT with the vast and growing 
             ecosystem of scientific Python packages.
         \end{itemize}
@@ -36,20 +43,6 @@
 \frame{
     \frametitle{Introducing rootpy}
     
-    \begin{Large}
-    \begin{center}
-    \href{http://www.rootpy.org}{www.rootpy.org}
-    \end{center}
-    \end{Large}
-
-    \begin{center}
-    \includegraphics[height=.7\textheight]{figs/rootpy-map.png}
-    \end{center}
-}
-
-\frame{
-    \frametitle{rootpy: Design \& Philosophy}
-
     \begin{itemize}
         \item rootpy does not aim to reproduce ROOT in Python
         but rather provide a layer on top of PyROOT that integrates more
@@ -68,6 +61,7 @@
                 PyROOT are implemented in rootpy
         \end{itemize}
     \end{itemize}
+
 }
 
 \frame{
@@ -91,6 +85,31 @@
     \end{itemize}
 }
 
+\frame{
+    \frametitle{What does rootpy offer?}
+    
+    Several of the main subcomponents of rootpy:
+    \begin{center}
+    \rowcolors[]{1}{blue!20}{blue!10} 
+    \begin{tabular}{l p{8cm}}
+        {\bf rootpy.plotting} & histogram, graphs, canvas, pad, legend, and 
+            style subclasses with additional pythonizations,
+            functions for plotting ROOT histograms with matplotlib. \\
+        {\bf rootpy.tree} & trees, chains, tree objects, tree models, cuts. \\
+        {\bf rootpy.io} & file and directory subclasses, utilities. \\
+        {\bf rootpy.logger} & routing ROOT messages through Python's
+            logging module. Turn ROOT error messages into Python exceptions. \\
+        {\bf rootpy.memory} & utilities for monitoring TObject deletions
+            and for keeping objects alive when explicit references on the Python
+            side go out of scope. \\
+        {\bf rootpy.interactive} & a wait function for preventing Python
+            from exiting until all canvases have been closed. \\
+        {\bf rootpy.root2hdf5} & conversion of ROOT files to HDF5. \\
+        {\bf rootpy.context} & utilities for managing ROOT's global state. \\
+        \end{tabular}
+    \end{center}
+}
+
 \begin{frame}[fragile]
     \frametitle{rootpy example: opening a TFile}
     \include{examples/file}
@@ -99,6 +118,7 @@
 \begin{frame}[fragile]
     \frametitle{rootpy example: creating histograms}
     \include{examples/hist}
+    \include{examples/hist_rootpy}
 \end{frame}
 
 \begin{frame}[fragile]
