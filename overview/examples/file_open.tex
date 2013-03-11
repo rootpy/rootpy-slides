@@ -1,0 +1,9 @@
+\begin{footnotesize}
+\begin{pyglist}[language=python,texcl=true,abovecaptionskip=0,style=vs,bgcolor=Moccasin]
+from ROOT import TFile
+
+myfile = TFile.Open("file_does_not_exist.root")
+print myfile
+myfile.Get("something")
+\end{pyglist}
+\end{footnotesize}
