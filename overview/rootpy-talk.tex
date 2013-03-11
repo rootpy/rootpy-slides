@@ -19,7 +19,7 @@
 }
 
 \frame{
-    \frametitle{What's the problem?}
+    \frametitle{``What's the problem?''}
 
     \begin{center}
     {\bf Why would we even consider developing a layer on top of PyROOT?}
@@ -44,6 +44,10 @@
 
 \frame{
     \frametitle{Scientific Python Applications}
+    \begin{center}
+    ``Can I perform complicated analysis with Python?''\\
+    {\bf You certainly can!}
+    \end{center}
     \begin{itemize}
         \item Interactive computing: \href{http://ipython.org/}{IPython}
         \item Powerful and fast array manipulation:
@@ -62,11 +66,13 @@
             \href{http://matplotlib.org/}{matplotlib}
         \item See a list of other kits here:
             \href{http://scikits.appspot.com/scikits}{scikits.appspot.com/scikits}
+        \item \href{http://root.cern.ch/drupal/}{ROOT} with
+            \href{http://root.cern.ch/drupal/content/pyroot}{PyROOT}
     \end{itemize}
 }
 
 \frame{
-    \frametitle{Introducing rootpy}
+    \frametitle{Introducing rootpy\ldots}
 
     \begin{itemize}
         \item rootpy aims to provide a \textbf{\emph{ more pythonic layer}} on
@@ -89,7 +95,7 @@
 
     \begin{itemize}
         \item Pythonized classes in rootpy are subclasses of the corresponding
-            ROOT classes with the same (or similar) name without the ``T''.\\
+            ROOT classes with the same (or similar) name, but without the ``T''.\\
             (for example: TFile $\rightarrow$ File, TCanvas $\rightarrow$ Canvas, \\
             TH[1|2|3][C|S|I|F|D] $\rightarrow$ Hist, Hist2D, Hist3D).
         \item ROOT methods may be overridden or new methods created to add
@@ -110,7 +116,7 @@
 }
 
 \frame{
-    \frametitle{What does rootpy offer?}
+    \frametitle{``What does rootpy offer?''}
 
     \begin{center}
     \rowcolors[]{1}{blue!20}{blue!10}
@@ -154,8 +160,7 @@
     \frametitle{The future of rootpy}
 
     \begin{itemize}
-        \item Larger documentation coverage. This is important!
-        \item More code examples.
+        \item Larger documentation coverage and more examples. {\bf This is important!}
         \item Python 3 support.
         \item Better integration with the IPython prompt: full tab completion
             and helpful builtin commands like pylab.
@@ -174,8 +179,39 @@
                 \item Wrap RooArgSet as set() and RooArgList as list()?
                 \item Create RooDataSets from NumPy arrays.
                 \end{itemize}
+       \item rootpy should serve as a {\bf testing ground for new ideas}.
    \end{itemize}
 }
+
+\begin{frame}[fragile]
+    \frametitle{``How do I install rootpy?''}
+    \begin{enumerate}
+        \item First install ROOT with python support enabled (PyROOT)
+        \item Clone the rootpy repository with git:
+\begin{pyglist}[language=bash,texcl=true,style=vim]
+git clone git://github.com/rootpy/rootpy.git
+\end{pyglist}
+        \item or checkout with svn:
+\begin{pyglist}[language=bash,texcl=true,style=vim]
+svn checkout http://svn.github.com/rootpy/rootpy
+\end{pyglist}
+        \item Then install:
+\begin{pyglist}[language=bash,texcl=true,style=vim]
+cd rootpy
+python setup.py install --user
+\end{pyglist}
+\end{enumerate}
+\begin{itemize}
+    \item or install a \href{https://pypi.python.org/pypi/rootpy}{released version}
+        with \href{https://pypi.python.org/pypi/pip}{pip}:
+\begin{pyglist}[language=bash,texcl=true,style=vim]
+pip install --user rootpy
+\end{pyglist}
+        \item See the
+                \href{https://github.com/rootpy/rootpy/blob/master/README.rst}{README}
+                for full instructions.
+    \end{itemize}
+\end{frame}
 
 \begin{frame}[fragile]
     \frametitle{How can you contribute?}
@@ -194,7 +230,7 @@ git clone git@github.com:<username>/rootpy.git
             \end{pyglist}
               Then submit a pull request with your contribution.
         \item Contributions are reviewed by peers before merging into the main branch.
-        \item All new code is automatically tested against our test suite using
+        \item All new code automatically triggers our test suite using
             \href{https://travis-ci.org/}{Travis CI}.
     \end{itemize}
 \end{frame}
