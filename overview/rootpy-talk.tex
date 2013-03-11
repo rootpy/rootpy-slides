@@ -49,6 +49,8 @@
     {\bf You certainly can!}
     \end{center}
     \begin{itemize}
+        \item \href{http://root.cern.ch/drupal/}{ROOT} with
+            \href{http://root.cern.ch/drupal/content/pyroot}{PyROOT}
         \item Interactive computing: \href{http://ipython.org/}{IPython}
         \item Powerful and fast array manipulation:
             \href{http://numpy.scipy.org/}{NumPy}
@@ -66,8 +68,6 @@
             \href{http://matplotlib.org/}{matplotlib}
         \item See a list of other kits here:
             \href{http://scikits.appspot.com/scikits}{scikits.appspot.com/scikits}
-        \item \href{http://root.cern.ch/drupal/}{ROOT} with
-            \href{http://root.cern.ch/drupal/content/pyroot}{PyROOT}
     \end{itemize}
 }
 
@@ -136,9 +136,38 @@
         {\bf rootpy.root2hdf5} & conversion of ROOT files to HDF5. \\
         {\bf rootpy.context} & utilities for managing ROOT's global state. \\
         \multicolumn{2}{c}{\ldots and more \ldots} \\
+        \multicolumn{2}{c}{See the
+            \href{https://github.com/rootpy/root\_numpy}{root\_numpy}
+        package for conversion of TTrees into NumPy arrays.}\\
         \end{tabular}
     \end{center}
 }
+
+\begin{frame}[fragile]
+    \frametitle{Histograms}
+    {\bf PyROOT}
+    \vspace{-.2cm}
+    \include{examples/hist}
+    {\bf rootpy}
+    \vspace{-.2cm}
+    \include{examples/hist_rootpy}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Cuts}
+    \begin{columns}
+        \column[t]{.45\textwidth}
+        {\bf PyROOT}
+        \include{examples/cuts}
+        output:
+        \include{examples/cuts_output}
+        \column[t]{.45\textwidth}
+        {\bf rootpy}
+        \include{examples/cuts_rootpy}
+        output:
+        \include{examples/cuts_rootpy_output}
+    \end{columns}
+\end{frame}
 
 \begin{frame}[fragile]
     \frametitle{rootpy example: opening a TFile}
@@ -160,6 +189,7 @@
     \frametitle{The future of rootpy}
 
     \begin{itemize}
+        \item Benefit from ROOT 6!
         \item Larger documentation coverage and more examples. {\bf This is important!}
         \item Python 3 support.
         \item Better integration with the IPython prompt: full tab completion

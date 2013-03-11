@@ -1,0 +1,18 @@
+\begin{footnotesize}
+\begin{pyglist}[language=text,texcl=true,abovecaptionskip=0,style=bw]
+Traceback (most recent call last):
+  File "hist.py", line 12, in <module>
+    2, array('d', [-100, 0, 20]))
+TypeError: none of the 5 overloaded methods succeeded. Full details:
+  TH3D::TH3D() =>
+    takes at most 0 arguments (9 given)
+  TH3D::TH3D(const TH3D& h3d) =>
+    takes at most 1 arguments (9 given)
+  TH3D::TH3D(const char* name, const char* title, Int_t nbinsx, Double_t xlow, Double_t xup, Int_t nbinsy, Double_t ylow, Double_t yup, Int_t nbinsz, Double_t zlow, Double_t zup) =>
+    takes at least 11 arguments (9 given)
+  TH3D::TH3D(const char* name, const char* title, Int_t nbinsx, const Float_t* xbins, Int_t nbinsy, const Float_t* ybins, Int_t nbinsz, const Float_t* zbins) =>
+    takes at most 8 arguments (9 given)
+  TH3D::TH3D(const char* name, const char* title, Int_t nbinsx, const Double_t* xbins, Int_t nbinsy, const Double_t* ybins, Int_t nbinsz, const Double_t* zbins) =>
+    takes at most 8 arguments (9 given)
+\end{pyglist}
+\end{footnotesize}

@@ -1,3 +1,4 @@
+# creating histograms
 from rootpy.plotting import Hist3D
 
 # variable width bins
