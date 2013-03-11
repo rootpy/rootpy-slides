@@ -20,7 +20,7 @@
 
 \frame{
     \frametitle{What's the problem?}
-    
+
     \begin{center}
     {\bf Why would we even consider developing a layer on top of PyROOT?}
     \end{center}
@@ -35,62 +35,87 @@
         \item Certain tasks require awkward code and are error-prone.
             Similar workarounds are implemented by many in multiple places.\\
             {\bf Why not solve these issues once and for all?}
-        \item There is a lack of integration of ROOT with the vast and growing 
+        \item There is a lack of integration of ROOT with the vast and growing
             ecosystem of scientific Python packages.\\ {\bf Why not enable users to
             benefit from both the power of ROOT and what is offered by the
             scientific Python community?}
         \end{itemize}
 }
 
+\frame{
+    \frametitle{Scientific Python Applications}
+    \begin{itemize}
+        \item Interactive computing: \href{http://ipython.org/}{IPython}
+        \item Powerful and fast array manipulation:
+            \href{http://numpy.scipy.org/}{NumPy}
+        \item Efficiently and easily handle large amounts of data:
+            \href{http://www.pytables.org/moin}{PyTables}
+        \item General scientific library: \href{http://www.scipy.org/}{scipy}
+        \item Data analysis and modeling: \href{http://pandas.pydata.org/}{pandas}
+        \item Statistical models and tests: \href{http://statsmodels.sourceforge.net/}{statsmodels}
+        \item Fitting: \href{http://cxc.harvard.edu/sherpa4.4/index.html}{sherpa}
+        \item Astronomy: \href{http://www.astropy.org/}{astropy}
+        \item Image processing: \href{http://scikit-image.org/}{scikit-image}
+        \item Machine learning:
+            \href{http://scikit-learn.org/stable/}{scikit-learn}
+        \item Feature-rich publication-quality plotting:
+            \href{http://matplotlib.org/}{matplotlib}
+        \item See a list of other kits here:
+            \href{http://scikits.appspot.com/scikits}{scikits.appspot.com/scikits}
+    \end{itemize}
+}
 
 \frame{
     \frametitle{Introducing rootpy}
-    
+
     \begin{itemize}
-        \item rootpy aims to provide a more pythonic layer on top of PyROOT
-            bindings and to take advantage of advanced features of the Python
-            language.
-        \item rootpy does not intend to recreate ROOT or to severely alter the
-            default behaviour of ROOT.
-        \item rootpy is not an analysis framework, but rather a library that
+        \item rootpy aims to provide a \textbf{\emph{ more pythonic layer}} on
+            top of the PyROOT bindings and to take advantage of advanced
+            features of the Python language.
+        \item {\bf rootpy does not intend to recreate ROOT} or to {\em severely}
+            alter the default behaviour of ROOT.
+        \item {\bf rootpy is not an analysis framework}, but rather a library that
             one's analysis framework might use.
-        \vspace{.2cm}
-        \begin{itemize}
-            \itemsep=.2cm
-            \item Setting and getting parameters with simple attributes:\\
-                {\bf hist.linecolor = 'darkseagreen'}
-            \item Simple navigation through TFiles:\\
-                {\bf hist = myfile.somedirectory.otherdirectory.histname}
-            \item Support for Python exceptions and logging
-            \item Python has a garbage collector but C++ does not: leads to
-                strange issues in PyROOT. rootpy addresses these problems.
-            \item Arithmetic operators that are otherwise not implemented in
-                PyROOT are implemented in rootpy
-        \item rootpy classes simply inherit from the corresponding ROOT classes
-            and may override methods to add functionality or be decorated with
-            additional attributes
-        \item rootpy classes typically have the same name as ROOT classes with
-            the T removed
-            but instead of having many histogram classes rootpy has three: Hist,
-            Hist2D, Hist3D with a type argument in the constructor that controls
-            which ROOT.THX is inherited from.
-        \item Anywhere Python is typically slow (looping) is instead compiled as a C extension
-            module. rootpy provides very fast conversion of ROOT Trees into
+        \item rootpy provides an {\bf interface with the scientific Python
+            packages}:
+        \end{itemize}
+        \begin{center}
+            \includegraphics[width=.5\textwidth]{figs/rootpy-map.png}
+        \end{center}
+}
+
+\frame{
+    \frametitle{rootpy: key concepts and design philosophy}
+
+    \begin{itemize}
+        \item Pythonized classes in rootpy are subclasses of the corresponding
+            ROOT classes with the same (or similar) name without the ``T''.\\
+            (for example: TFile $\rightarrow$ File, TCanvas $\rightarrow$ Canvas, \\
+            TH[1|2|3][C|S|I|F|D] $\rightarrow$ Hist, Hist2D, Hist3D).
+        \item ROOT methods may be overridden or new methods created to add
+            functionality (i.e. operators) and objects may be decorated with
+            additional properties.
+        \item Object names and titles are optional. Unspecified names default to
+            UUIDs.
+        \item ROOT messages should be routed through Python's logging system
+            with error messages raised as Python exceptions.
+        \item Python has a garbage collector but C++ does not: this can lead to
+            strange issues. rootpy addresses these problems.
+        \item Anywhere Python is typically slow we intend to instead use
+            compiled C extension modules. Through the root\_numpy
+            package, rootpy provides very fast conversion of ROOT Trees into
             NumPy arrays as well as efficiently filling ROOT histograms with
             NumPy arrays.
-
         \end{itemize}
-    \end{itemize}
-
 }
 
 \frame{
     \frametitle{What does rootpy offer?}
-    
+
     \begin{center}
-    \rowcolors[]{1}{blue!20}{blue!10} 
+    \rowcolors[]{1}{blue!20}{blue!10}
     \begin{tabular}{l p{8cm}}
-        {\bf rootpy.plotting} & histogram, graphs, canvas, pad, legend, and 
+        {\bf rootpy.plotting} & histogram, graphs, canvas, pad, legend, and
             style subclasses with additional pythonizations,
             functions for plotting ROOT histograms with matplotlib. \\
         {\bf rootpy.tree} & trees, chains, tree objects, tree models, cuts. \\
@@ -131,10 +156,9 @@
     \begin{itemize}
         \item Larger documentation coverage. This is important!
         \item More code examples.
-        \item Python 3 is becoming more mainstream -- support for this in rootpy
-            will be required.
+        \item Python 3 support.
         \item Better integration with the IPython prompt: full tab completion
-            and addition of helpful builtin commands like pylab.
+            and helpful builtin commands like pylab.
         \item Automatic wrapping of ROOT methods by parsing method signatures:
             \begin{itemize}
                 \item If a method expects a TColor, rootpy can accept any matplotlib/ROOT color
@@ -143,30 +167,36 @@
                 \end{itemize}
        \item TMVA:
            \begin{itemize}
-                \item Feed TMVA NumPy arrays instead of TTrees. 
+                \item Ability to feed TMVA classifiers NumPy arrays.
                 \end{itemize}
        \item RooFit and RooStats:
            \begin{itemize}
-                \item Wrap RooArgSet as set() and RooArgList as list()...
+                \item Wrap RooArgSet as set() and RooArgList as list()?
                 \item Create RooDataSets from NumPy arrays.
                 \end{itemize}
    \end{itemize}
 }
 
-\frame{
-    \frametitle{How can I contribute?}
-    
-    \begin{itemize}
-        \item We use Git! Development is community-driven.
-        \item Just fork rootpy into your own GitHub account and:
-    
-            \hspace{1cm} {\bf git clone git@github.com:[username]/rootpy.git}
+\begin{frame}[fragile]
+    \frametitle{How can you contribute?}
 
+    \begin{center}
+    \includegraphics[width=5cm]{figs/we-want-you.jpg}
+    \end{center}
+
+    \begin{itemize}
+        \item Development is community-driven.
+        \item We use Git! See the rootpy collaboration on GitHub:
+            \href{https://github.com/rootpy}{github.com/rootpy}
+        \item Just fork rootpy into your own GitHub account and:
+            \begin{pyglist}[language=bash,texcl=true,style=vim]
+git clone git@github.com:<username>/rootpy.git
+            \end{pyglist}
               Then submit a pull request with your contribution.
         \item Contributions are reviewed by peers before merging into the main branch.
         \item All new code is automatically tested against our test suite using
-            \href{https://travis-ci.org/}{Travis CI}
+            \href{https://travis-ci.org/}{Travis CI}.
     \end{itemize}
-}
+\end{frame}
 
 \end{document}

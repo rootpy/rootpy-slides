@@ -3,6 +3,17 @@
 	pdfpagelabels=false
 }
 
+%\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{100pt}}{\enditemize}
+%\newenvironment{wideenumerate}{\enumerate\addtolength{\itemsep}{100pt}}{\endenumerate}
+
+\let\tempone\itemize
+\let\temptwo\enditemize
+\renewenvironment{itemize}{\tempone\addtolength{\itemsep}{0.5\baselineskip}}{\temptwo}
+
+\let\tempthree\enumerate
+\let\tempfour\endenumerate
+\renewenvironment{enumerate}{\tempthree\addtolength{\itemsep}{0.5\baselineskip}}{\tempfour}
+
 \usetheme{Singapore}
 
 \definecolor{darkgreen}{rgb}{0, 0.5, 0.0}
