@@ -1,10 +1,13 @@
 \begin{footnotesize}
 \begin{pyglist}[language=text,texcl=true,abovecaptionskip=0,style=bw]
-Error in <TFile::TFile>: file file_does_not_exist.root does not exist
-<ROOT.TFile object at 0x(nil)>
+ERROR:ROOT.TFile.TFile] file file_does_not_exist.root does not exist
 Traceback (most recent call last):
-  File "file_open.py", line 6, in <module>
-    myfile.Get("something")
-ReferenceError: attempt to access a null-pointer
+  File "file_open.py.tmp.py", line 13, in <module>
+    myfile = TFile.Open("file_does_not_exist.root")
+  File "file_open.py.tmp.py", line 13, in <module>
+    myfile = TFile.Open("file_does_not_exist.root")
+  File "/home/endw/.local/lib/python2.7/site-packages/rootpy-dev-py2.7.egg/rootpy/logger/roothandler.py", line 91, in python_logging_error_handler
+    raise ROOTError(level, location, msg)
+rootpy.ROOTError: level=3000, loc='TFile::TFile', msg='file file_does_not_exist.root does not exist'
 \end{pyglist}
 \end{footnotesize}

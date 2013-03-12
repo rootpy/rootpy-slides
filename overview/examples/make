@@ -4,6 +4,12 @@ import subprocess
 import ROOT
 ROOT.gROOT.SetBatch()
 
+preamble = """
+import rootpy
+rootpy.log.basic_config_colorized()
+import ROOT
+ROOT.gROOT.SetBatch()
+"""
 showlabel = False
 
 for dirpath, dirnames, filenames in os.walk('.'):
@@ -24,11 +30,19 @@ for dirpath, dirnames, filenames in os.walk('.'):
                         % (caption, listingname))
             else:
                 f.write('\\begin{pyglist}[language=python,texcl=true,abovecaptionskip=0,style=vs,bgcolor=Moccasin]\n')
-            f.writelines(content[1:])
+            if content[0].startswith('"'):
+                f.writelines(content)
+            else:
+                f.writelines(content[1:])
             f.write('\\end{pyglist}\n')
             f.write('\\end{footnotesize}\n')
         # run the script and write the output
-        proc = subprocess.Popen(['python', filename],
+        content[0:0] = preamble
+        tmp_file_name = filename + '.tmp.py'
+        tmp_file = open(tmp_file_name, 'w')
+        tmp_file.writelines(content)
+        tmp_file.close()
+        proc = subprocess.Popen(['python', tmp_file_name],
                 stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         output = proc.communicate()[0]
         with open(os.path.join(dirpath, name + '_output.tex'), 'w') as f:
@@ -37,3 +51,4 @@ for dirpath, dirnames, filenames in os.walk('.'):
             f.write(output)
             f.write('\\end{pyglist}\n')
             f.write('\\end{footnotesize}\n')
+        os.unlink(tmp_file_name)
