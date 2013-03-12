@@ -151,6 +151,34 @@
 \end{frame}
 
 \begin{frame}[fragile]
+    \frametitle{Histograms and Style}
+    \begin{itemize}
+        \item rootpy reduces ROOT's histogram classes down to Hist, Hist2D,
+            Hist3D.
+        \item The appropriate ROOT base class is set {\em dynamically}:
+            \begin{footnotesize}
+\begin{pyglist}[language=python,texcl=true,style=vs]
+>>> from rootpy.plotting import Hist2D
+>>> hist = Hist2D(10, 0, 1, 5, 0, 1, type='F')
+>>> hist.__class__.__bases__
+(<class 'rootpy.plotting.hist._Hist2D'>, <class 'ROOT.TH2F'>)
+\end{pyglist}
+\end{footnotesize}
+\item Attributes can be accessed via properties:
+\begin{pyglist}[language=python,texcl=true,style=vs]
+      hist.fillstyle = 'solid'
+      color = hist.linecolor
+\end{pyglist}
+\item Colors can also be set using hex, RGB tuples, or SVG names:
+\begin{pyglist}[language=python,texcl=true,style=vs]
+      hist.fillcolor = (32, 178, 170)
+      hist.linecolor = '#87cefa'
+      hist.markercolor = 'salmon'
+\end{pyglist}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
     \frametitle{Cuts}
     \begin{columns}
         \column[t]{.45\textwidth}
