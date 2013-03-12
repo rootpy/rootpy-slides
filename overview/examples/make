@@ -5,11 +5,15 @@ import ROOT
 ROOT.gROOT.SetBatch()
 
 preamble = """
-import rootpy
-rootpy.log.basic_config_colorized()
 import ROOT
 ROOT.gROOT.SetBatch()
 """
+
+preamble_rootpy = preamble + """
+import rootpy
+rootpy.log.basic_config_colorized()
+"""
+
 showlabel = False
 
 for dirpath, dirnames, filenames in os.walk('.'):
@@ -37,7 +41,10 @@ for dirpath, dirnames, filenames in os.walk('.'):
             f.write('\\end{pyglist}\n')
             f.write('\\end{footnotesize}\n')
         # run the script and write the output
-        content[0:0] = preamble
+        if listingname == 'rootpy':
+            content[0:0] = preamble_rootpy
+        else:
+            content[0:0] = preamble
         tmp_file_name = filename + '.tmp.py'
         tmp_file = open(tmp_file_name, 'w')
         tmp_file.writelines(content)
