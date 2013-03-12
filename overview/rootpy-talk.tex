@@ -190,8 +190,13 @@
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{rootpy: Filling a TTree}
+    \frametitle{PyROOT: Filling a TTree}
     \include{examples/tree}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{rootpy: Filling a TTree}
+    \include{examples/tree_rootpy}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -204,6 +209,20 @@
     \include{examples/tree_model_rootpy}
     \column[t]{.45\textwidth}
     \include{examples/tree_model_rootpy_output}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Memory issues? Solved.}
+    \begin{columns}
+        \column[t]{.45\textwidth}
+        {\bf PyROOT}
+    \include{examples/memory}
+        \column[t]{.45\textwidth}
+        {\bf rootpy}
+    \include{examples/memory_rootpy}
+    Objects are kept alive as long as the Canvas is alive. \\
+    {\bf See rootpy's keepalive function.}
     \end{columns}
 \end{frame}
 

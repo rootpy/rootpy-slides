@@ -1,21 +1,18 @@
-from rootpy.io import open
-from rootpy.tree import Tree, TreeModel
-from rootpy.types import FloatCol, IntCol
-import random
+from ROOT import TTree, TFile
+from array import array
+from random import gauss
 
-class Model(TreeModel):
-    x = FloatCol(default=-1.)
-    y = FloatCol()
-    i = IntCol()
-
-f = open('test.root', 'recreate')
-tree = Tree(name='test', model=Model)
+output_file = TFile.Open('output.root', 'recreate')
+some_float = array('f', [0.])
+some_int = array('i', [0])
+tree = TTree('mytree', '')
+tree.Branch('some_float', some_float, 'some_float/F')
+tree.Branch('some_int', some_int, 'some_int/I')
 
 for i in xrange(100):
-    tree.x = random.gauss(4, 3)
-    tree.y = random.gauss(2, 3)
-    tree.i = i
-    tree.fill()
+    some_float[0] = gauss(0, 1)
+    some_int[0] = i
+    tree.Fill()
 
-tree.write()
-f.close()
+tree.Write()
+output_file.Close()
