@@ -41,6 +41,8 @@ for dirpath, dirnames, filenames in os.walk('.'):
             f.write('\\end{pyglist}\n')
             f.write('\\end{footnotesize}\n')
         # run the script and write the output
+        if os.path.exists(os.path.join(dirpath, name + '_output.lock')):
+            continue
         if listingname == 'rootpy':
             content[0:0] = preamble_rootpy
         else:
