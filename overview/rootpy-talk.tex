@@ -120,7 +120,7 @@
 
     \begin{center}
     \rowcolors[]{1}{blue!20}{blue!10}
-    \begin{tabular}{l p{8cm}}
+    \begin{tabular}{l >{\raggedright\arraybackslash}p{8cm}}
         {\bf rootpy.plotting} & histogram, graphs, canvas, pad, legend, and
             style subclasses with additional pythonizations,
             including a matplotlib interface. \\
@@ -132,6 +132,7 @@
             and for keeping objects alive when out of scope in Python. \\
         {\bf rootpy.interactive} & a wait function for preventing Python
             from exiting until all canvases have been closed. \\
+        {\bf rootpy.stl} & automatic STL dictionary compilation and caching. \\
         {\bf rootpy.root2hdf5} & conversion of ROOT files into HDF5. \\
         {\bf rootpy.context} & utilities for managing ROOT's global state. \\
         \multicolumn{2}{c}{\ldots and more \ldots} \\
