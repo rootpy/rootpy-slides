@@ -215,7 +215,8 @@
     \include{examples/file_open_rootpy_output}
     \begin{center}
         \vspace{-.5cm}
-    {\bf An exception is raised at the point of failure: \verb|root_open|}
+    {\bf An exception is raised at the point of failure:
+    \verb|root_open()|}
     \end{center}
 \end{frame}
 
@@ -245,7 +246,13 @@
         \column[t]{.45\textwidth}
     \include{examples/tree_model_rootpy}
     \column[t]{.45\textwidth}
+
+    \vspace{.8cm}
+
+    Branches are constructed according to the requested model:
     \include{examples/tree_model_rootpy_output}
+    \vspace{-.3cm}
+    Support for default values, automatic STL dictionaries, ROOT objects.
     \end{columns}
 \end{frame}
 
@@ -270,7 +277,11 @@
     can be drawn with matplotlib} via rootpy's
     \href{https://github.com/rootpy/rootpy/blob/master/rootpy/plotting/root2matplotlib.py}{
     matplotlib interface}:
-    \includegraphics[width=\textwidth]{figs/examples/matplotlib_example.png}
+    \begin{center}
+    \includegraphics[width=.9\textwidth]{figs/examples/matplotlib_example.png}\\
+    \href{http://matplotlib.org/gallery.html}{matplotlib}: highly customizable,
+    multiple backends, uses your latex engine.
+\end{center}
 \end{frame}
 
 
