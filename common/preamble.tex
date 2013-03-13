@@ -6,6 +6,10 @@
 %\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{100pt}}{\enditemize}
 %\newenvironment{wideenumerate}{\enumerate\addtolength{\itemsep}{100pt}}{\endenumerate}
 
+%\usepackage{upquote}
+\usepackage{listings}
+\lstset{language=Python}
+
 \let\tempone\itemize
 \let\temptwo\enditemize
 \renewenvironment{itemize}{\tempone\addtolength{\itemsep}{0.5\baselineskip}}{\temptwo}
@@ -70,7 +74,7 @@ linkcolor=blue
 %\setbeamercolor{frametitle}{bg=Blue,fg=white}
 %\setbeamercolor{title}{bg=Blue,fg=white}
 
-%\setbeamersize{text margin left=.2cm} 
+%\setbeamersize{text margin left=.2cm}
 %\setbeamersize{text margin right=.5cm}
 
 \setbeamertemplate{itemize itemsep}[0.3in]
