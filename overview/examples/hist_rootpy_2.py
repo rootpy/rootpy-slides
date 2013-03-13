@@ -1,3 +1,4 @@
+# test
 from rootpy.plotting import Hist, Hist2D, Hist3D
 
 # create a 1D histogram
