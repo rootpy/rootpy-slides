@@ -4,7 +4,7 @@
 \include{phys_defs}
 
 \title{rootpy: Pythonic ROOT}
-%\subtitle{I have no subtitle}
+\subtitle{\href{http://rootpy.org}{rootpy.org}\vspace{-.5cm}}
 \author[Noel Dawe]{Noel Dawe}
 \date[\today]{\today}
 \institute[rootpy]{for the rootpy dev team}
@@ -107,7 +107,8 @@
         \item {\bf Python has a garbage collector but C++ does not:} this can lead to
             strange issues. rootpy addresses these problems.
         \item Anywhere Python is typically slow we intend to use
-            {\bf compiled C extension modules}. Through the root\_numpy
+            {\bf compiled C extension modules}. Through the
+            \href{https://github.com/rootpy/root\_numpy}{root\_numpy}
             package, rootpy provides very fast conversion of ROOT Trees into
             NumPy arrays as well as efficiently filling ROOT histograms with
             NumPy arrays.
@@ -131,7 +132,7 @@
             and for keeping objects alive when out of scope in Python. \\
         {\bf rootpy.interactive} & a wait function for preventing Python
             from exiting until all canvases have been closed. \\
-        {\bf rootpy.root2hdf5} & conversion of ROOT files to HDF5. \\
+        {\bf rootpy.root2hdf5} & conversion of ROOT files into HDF5. \\
         {\bf rootpy.context} & utilities for managing ROOT's global state. \\
         \multicolumn{2}{c}{\ldots and more \ldots} \\
         \multicolumn{2}{c}{See the
@@ -157,24 +158,22 @@
         \item rootpy reduces ROOT's histogram classes down to Hist, Hist2D,
             Hist3D.
         \item The appropriate ROOT base class is set {\em dynamically}:
-            \begin{footnotesize}
 \begin{pyglist}[language=python,style=vs]
 >>> from rootpy.plotting import Hist2D
 >>> hist = Hist2D(10, 0, 1, 5, 0, 1, type='F')
 >>> hist.__class__.__bases__[-1].__name__
 'TH2F'
 \end{pyglist}
-\end{footnotesize}
 \item Attributes can be accessed via properties:
 \begin{pyglist}[language=python,texcl=true,style=vs]
-      hist.fillstyle = 'solid'
-      color = hist.linecolor
+hist.fillstyle = 'solid'
+color = hist.linecolor
 \end{pyglist}
 \item Colors can also be set using hex, RGB tuples, or SVG names:
 \begin{pyglist}[language=python,texcl=true,style=vs]
-      hist.fillcolor = (32, 178, 170)
-      hist.linecolor = '#87cefa'
-      hist.markercolor = 'salmon'
+hist.fillcolor = (32, 178, 170)
+hist.linecolor = '#87cefa'
+hist.markercolor = 'salmon'
 \end{pyglist}
 \end{itemize}
 \end{frame}
@@ -319,7 +318,7 @@
 \begin{frame}[fragile]
     \frametitle{``How do I install rootpy?''}
     \begin{enumerate}
-        \item First install ROOT with python support enabled (PyROOT)
+        \item First install ROOT with PyROOT enabled.
         \item Clone the rootpy repository with git:
 \begin{pyglist}[language=bash,texcl=true,style=vim]
 git clone git://github.com/rootpy/rootpy.git
@@ -335,8 +334,8 @@ python setup.py install --user
 \end{pyglist}
 \end{enumerate}
 \begin{itemize}
-    \item or install a \href{https://pypi.python.org/pypi/rootpy}{released version}
-        with \href{https://pypi.python.org/pypi/pip}{pip}:
+    \item The easiest way to install a \href{https://pypi.python.org/pypi/rootpy}{released version}
+        is with \href{https://pypi.python.org/pypi/pip}{pip}:
 \begin{pyglist}[language=bash,texcl=true,style=vim]
 pip install --user rootpy
 \end{pyglist}
