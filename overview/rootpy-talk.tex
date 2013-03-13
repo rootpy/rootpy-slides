@@ -161,8 +161,8 @@
 \begin{pyglist}[language=python,style=vs]
 >>> from rootpy.plotting import Hist2D
 >>> hist = Hist2D(10, 0, 1, 5, 0, 1, type='F')
->>> hist.__class__.__bases__
-(<class 'rootpy.plotting.hist._Hist2D'>, <class 'ROOT.TH2F'>)
+>>> hist.__class__.__bases__[-1].__name__
+'TH2F'
 \end{pyglist}
 \end{footnotesize}
 \item Attributes can be accessed via properties:
@@ -392,7 +392,6 @@ git clone git@github.com:<username>/rootpy.git
             \item \href{http://www.ohloh.net/p/rootpy}{ohloh.net/p/rootpy}
             \item rootpy-dev@googlegroups.com
             \item rootpy-users@googlegroups.com
-            \item \href{http://webchat.freenode.net/?randomnick=1&channels=rootpy&prompt=1}{IRC}
             \end{itemize}
         \end{columns}
     \end{center}
