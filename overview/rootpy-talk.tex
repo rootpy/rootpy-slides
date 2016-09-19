@@ -88,6 +88,31 @@
     \end{center}
 }
 
+\frame{
+    \frametitle{Why the name ``rootpy''?}
+
+    \begin{center}
+        numpy, scipy, h5py, \ldots \hspace{.5cm} See the pattern?
+    
+    \vspace{1cm}
+    ``rootpy'' is meant to automatically convey the idea ``Like PyROOT, but Pythonic?'' 
+    
+    \vspace{.5cm}
+
+\begin{exampleblock}{}
+{\em ``Pythonic means code that doesn't just get the syntax right but that follows
+    the conventions$^*$ of the Python community and uses the language in the way it
+    is intended to be used.''} 
+  \vskip1mm
+  \hspace*\fill{\small--- \href{http://stackoverflow.com/a/25011492/1002176}{stackoverflow}}
+\end{exampleblock}
+
+\vspace{.5cm}
+{\small * Capitalization is important. ROOTPy, RootPy, etc. are all unacceptable.}
+
+\end{center}
+}
+
 {
 \setbeamercolor{background canvas}{bg=black,fg=white}
 \usebeamercolor[fg]{background canvas}
@@ -105,7 +130,8 @@
     \vspace{1cm}
     {\bf
     18,808 lines of code\\
-    Over 3800 commits in 535 pull requests}
+    Over 3800 commits in 535 pull requests\\
+    Many users and developers from LHC and non-LHC experiments}
     \end{center}
 \end{frame}
 }
@@ -340,7 +366,7 @@ Hist('name')
     \begin{itemize}
         \itemsep=0.3cm
         \item Larger documentation coverage and more examples. {\bf This is important!}
-        \item Python 3 support. This really depends on underlying support in PyROOT!
+        \item Full Python 3 support.
         \item Better integration with Jupyter Notebooks:
             \begin{itemize}
                 \item Full tab completion and helpful builtin commands like pylab.
