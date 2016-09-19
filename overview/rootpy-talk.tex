@@ -7,19 +7,19 @@
 \subtitle{\href{http://rootpy.org}{rootpy.org}\vspace{-.5cm}}
 \author[Noel Dawe]{Noel Dawe}
 \date[\today]{\today}
-\institute[rootpy]{for the rootpy developers}
+\institute[rootpy]{on behalf of all rootpy contributors}
 \titlegraphic{\includegraphics[height=3cm]{../common/images/rootpy_logo.png}}
 
 \begin{document}
 
 \frame{\titlepage
-    \begin{center}
-    {\bf ROOT Users Workshop, Saas-Fee}
-    \end{center}
+    %\begin{center}
+    %{\bf ROOT Users Workshop, Saas-Fee}
+    %\end{center}
 }
 
 \frame{
-    \frametitle{``What's the problem?''}
+    \frametitle{What's the problem?}
 
     \begin{center}
     {\bf Why would we even consider developing a layer on top of PyROOT?}
@@ -290,7 +290,6 @@ hist.markercolor = 'salmon'
     \frametitle{The future of rootpy}
 
     \begin{itemize}
-        \item Benefit from ROOT 6!
         \item Larger documentation coverage and more examples. {\bf This is important!}
         \item Python 3 support.
         \item Better integration with the IPython prompt:
@@ -325,11 +324,7 @@ hist.markercolor = 'salmon'
 \begin{pyglist}[language=bash,texcl=true,style=vim]
 git clone git://github.com/rootpy/rootpy.git
 \end{pyglist}
-or checkout with svn (if you must\ldots):
-\begin{pyglist}[language=bash,texcl=true,style=vim]
-svn checkout http://svn.github.com/rootpy/rootpy
-\end{pyglist}
-        \item Then install:
+\item Then install:
 \begin{pyglist}[language=bash,texcl=true,style=vim]
 cd rootpy
 python setup.py install --user
@@ -347,56 +342,56 @@ pip install --user rootpy
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-    \frametitle{How can you contribute?}
+%\begin{frame}[fragile]
+    %\frametitle{How can you contribute?}
 
-    \begin{center}
-    \includegraphics[width=5cm]{figs/we-want-you.jpg}
-    \end{center}
+    %\begin{center}
+    %\includegraphics[width=5cm]{figs/we-want-you.jpg}
+    %\end{center}
 
-    \begin{itemize}
-        \item Development is community-driven.
-        \item We use Git! See the rootpy collaboration on GitHub:
-            \href{https://github.com/rootpy}{github.com/rootpy}
-        \item Just fork rootpy into your own GitHub account and:
-            \begin{pyglist}[language=bash,texcl=true,style=vim]
-git clone git@github.com:<username>/rootpy.git
-            \end{pyglist}
-              Then submit a pull request with your contribution.
-        \item Contributions are reviewed by peers before merging into the main branch.
-        \item All new code automatically triggers our test suite using
-            \href{https://travis-ci.org/}{Travis CI}.
-    \end{itemize}
-\end{frame}
+    %\begin{itemize}
+        %\item Development is community-driven.
+        %\item We use Git! See the rootpy collaboration on GitHub:
+            %\href{https://github.com/rootpy}{github.com/rootpy}
+        %\item Just fork rootpy into your own GitHub account and:
+            %\begin{pyglist}[language=bash,texcl=true,style=vim]
+%git clone git@github.com:<username>/rootpy.git
+            %\end{pyglist}
+              %Then submit a pull request with your contribution.
+        %\item Contributions are reviewed by peers before merging into the main branch.
+        %\item All new code automatically triggers our test suite using
+            %\href{https://travis-ci.org/}{Travis CI}.
+    %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-    \begin{large}
-    \begin{center}
-    \begin{columns}
-        \column[t]{.4\textwidth}
-{\bf The Developers:}
-\vspace{.5cm}
-\begin{itemize}
-    \item Noel Dawe
-    \item Peter Waller
-    \item Piti Ongmongkolkul
-    \item Christoph Deil
-    \item Evan Friis
-    \item Jeff Klukas
-\end{itemize}
-\column[t]{.55\textwidth}
-{\bf Where to find us:}
-\vspace{.5cm}
-        \begin{itemize}
-            \item \href{http://rootpy.org}{rootpy.org}
-            \item \href{https://github.com/rootpy}{github.com/rootpy}
-            \item \href{http://www.ohloh.net/p/rootpy}{ohloh.net/p/rootpy}
-            \item rootpy-dev@googlegroups.com
-            \item rootpy-users@googlegroups.com
-            \end{itemize}
-        \end{columns}
-    \end{center}
-    \end{large}
-\end{frame}
+%\begin{frame}
+    %\begin{large}
+    %\begin{center}
+    %\begin{columns}
+        %\column[t]{.4\textwidth}
+%{\bf The Developers:}
+%\vspace{.5cm}
+%\begin{itemize}
+    %\item Noel Dawe
+    %\item Peter Waller
+    %\item Piti Ongmongkolkul
+    %\item Christoph Deil
+    %\item Evan Friis
+    %\item Jeff Klukas
+%\end{itemize}
+%\column[t]{.55\textwidth}
+%{\bf Where to find us:}
+%\vspace{.5cm}
+        %\begin{itemize}
+            %\item \href{http://rootpy.org}{rootpy.org}
+            %\item \href{https://github.com/rootpy}{github.com/rootpy}
+            %\item \href{http://www.ohloh.net/p/rootpy}{ohloh.net/p/rootpy}
+            %\item rootpy-dev@googlegroups.com
+            %\item rootpy-users@googlegroups.com
+            %\end{itemize}
+        %\end{columns}
+    %\end{center}
+    %\end{large}
+%\end{frame}
 
 \end{document}

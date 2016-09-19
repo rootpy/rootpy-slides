@@ -1,5 +1,5 @@
 \begin{footnotesize}
-\begin{pyglist}[language=python,texcl=true,abovecaptionskip=0,style=vs,bgcolor=Moccasin]
+\begin{minted}{python}
 from rootpy.testdata import get_file
 
 # use the test file shipped with rootpy
@@ -10,5 +10,5 @@ with get_file() as f:
     for path, dirs, objects in f.walk():
         # do something
         print path, dirs, objects
-\end{pyglist}
+\end{minted}
 \end{footnotesize}

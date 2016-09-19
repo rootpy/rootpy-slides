@@ -1,4 +1,10 @@
 \begin{footnotesize}
-\begin{pyglist}[language=text,texcl=true,abovecaptionskip=0,style=bw]
-\end{pyglist}
+\begin{minted}{text}
+WARNING:rootpy.interactive.rootwait] unable to access ROOT's GUI thread either because PyROOT's
+                finalSetup() was called while in batch mode or because PyROOT
+                is using the new PyOS_InputHook-based mechanism that is not yet
+                supported in rootpy (PyConfig.StartGuiThread == 'inputhook' or
+                gSystem.InheritsFrom('TMacOSXSystem')). wait() etc. will
+                instead call raw_input() and wait for [Enter]
+\end{minted}
 \end{footnotesize}

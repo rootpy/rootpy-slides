@@ -13,3 +13,4 @@
 *.pyg.lst
 *.pyg.sty
 *.cookie
+*.fdb_latexmk

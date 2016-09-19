@@ -1,5 +1,5 @@
 \begin{footnotesize}
-\begin{pyglist}[language=python,texcl=true,abovecaptionskip=0,style=vs,bgcolor=Moccasin]
+\begin{minted}{python}
 from rootpy.io import root_open
 from rootpy.tree import Tree, TreeModel
 from rootpy.types import FloatCol
@@ -14,5 +14,5 @@ with root_open('output.root', 'recreate'):
         tree.variable = gauss(0, 1)
         tree.Fill()
     tree.Write()
-\end{pyglist}
+\end{minted}
 \end{footnotesize}

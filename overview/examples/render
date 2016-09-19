@@ -7,6 +7,9 @@ ROOT.gROOT.SetBatch()
 preamble = """
 import ROOT
 ROOT.gROOT.SetBatch()
+
+def raw_input():
+    pass
 """
 
 preamble_rootpy = preamble + """
@@ -30,15 +33,15 @@ for dirpath, dirnames, filenames in os.walk('.'):
             f.write('\\begin{footnotesize}\n')
             if showlabel:
                 caption = content[0].strip('# ')
-                f.write('\\begin{pyglist}[language=python,texcl=true,abovecaptionskip=0,style=vs,bgcolor=Moccasin,caption={%s},listingname=\\textbf{%s}]\n'
+                f.write('\\begin{minted}{python}\n'
                         % (caption, listingname))
             else:
-                f.write('\\begin{pyglist}[language=python,texcl=true,abovecaptionskip=0,style=vs,bgcolor=Moccasin]\n')
+                f.write('\\begin{minted}{python}\n')
             if content[0].startswith('"'):
                 f.writelines(content)
             else:
                 f.writelines(content[1:])
-            f.write('\\end{pyglist}\n')
+            f.write('\\end{minted}\n')
             f.write('\\end{footnotesize}\n')
         # run the script and write the output
         if os.path.exists(os.path.join(dirpath, name + '_output.lock')):
@@ -47,17 +50,18 @@ for dirpath, dirnames, filenames in os.walk('.'):
             content[0:0] = preamble_rootpy
         else:
             content[0:0] = preamble
-        tmp_file_name = filename + '.tmp.py'
+        tmp_file_name = filename + '.tmp'
         tmp_file = open(tmp_file_name, 'w')
         tmp_file.writelines(content)
         tmp_file.close()
+        print "running {0} ...".format(tmp_file_name)
         proc = subprocess.Popen(['python', tmp_file_name],
                 stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         output = proc.communicate()[0]
         with open(os.path.join(dirpath, name + '_output.tex'), 'w') as f:
             f.write('\\begin{footnotesize}\n')
-            f.write('\\begin{pyglist}[language=text,texcl=true,abovecaptionskip=0,style=bw]\n')
+            f.write('\\begin{minted}{text}\n')
             f.write(output)
-            f.write('\\end{pyglist}\n')
+            f.write('\\end{minted}\n')
             f.write('\\end{footnotesize}\n')
         os.unlink(tmp_file_name)

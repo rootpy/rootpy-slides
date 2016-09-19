@@ -1,5 +1,5 @@
 \begin{footnotesize}
-\begin{pyglist}[language=python,texcl=true,abovecaptionskip=0,style=vs,bgcolor=Moccasin]
+\begin{minted}{python}
 from ROOT import TH3D
 from array import array
 
@@ -11,5 +11,5 @@ hist3d = TH3D('3d', '3d', 3, array('d', [0, 3, 10, 100]),
 hist3d = TH3D('3d', '3d', 3, 0, 5,
                           5, array('d', [2.3, 4.2, 5.8, 10, 20, 25.5]),
                           2, array('d', [-100, 0, 20]))
-\end{pyglist}
+\end{minted}
 \end{footnotesize}

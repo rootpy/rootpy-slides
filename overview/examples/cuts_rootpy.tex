@@ -1,5 +1,5 @@
 \begin{footnotesize}
-\begin{pyglist}[language=python,texcl=true,abovecaptionskip=0,style=vs,bgcolor=Moccasin]
+\begin{minted}{python}
 from rootpy.tree import Cut
 
 cut1 = Cut('a < 10')
@@ -15,5 +15,5 @@ print cut3
 # easily combine cuts arbitrarily
 cut = ((cut1 & cut2) | - cut3)
 print cut
-\end{pyglist}
+\end{minted}
 \end{footnotesize}
