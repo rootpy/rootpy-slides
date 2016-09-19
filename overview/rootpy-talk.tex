@@ -52,7 +52,7 @@
     \begin{itemize}
         \item \href{http://root.cern.ch/drupal/}{ROOT} with \href{http://root.cern.ch/drupal/content/pyroot}{PyROOT}
         \item Interactive computing: \href{http://jupyter.org/}{Jupyter Notebook}
-        \item Powerful and fast array manipulation: \href{http://numpy.scipy.org/}{NumPy}
+        \item Powerful and fast array manipulation: \href{http://numpy.scipy.org/}{numpy}
         \item Feature-rich publication-quality plotting: \href{http://matplotlib.org/}{matplotlib}
         \item Efficiently and easily handle large amounts of data: \href{http://www.pytables.org/moin}{PyTables}, \href{http://www.h5py.org/}{h5py}
         \item General scientific library: \href{http://www.scipy.org/}{scipy}
@@ -130,7 +130,7 @@ See \href{https://www.python.org/dev/peps/pep-0008}{PEP8}}
     
     \vspace{1cm}
     {\bf
-    18,808 lines of code\\
+    19k lines of code\\
     Over 3800 commits in 535 pull requests\\
     Many users and developers from LHC and non-LHC experiments}
     \end{center}
@@ -278,7 +278,7 @@ messages as Python exceptions at the point of failure:
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{rootpy: TFiles}
+    \frametitle{rootpy: Files}
     \begin{itemize}
 \item Simple dictionary-like access:
 \begin{pyglist}[language=python,style=vs]
@@ -305,12 +305,12 @@ for path, dirs, objects in f.walk():
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{PyROOT: Filling a TTree}
+    \frametitle{PyROOT: Filling a Tree}
     \include{examples/tree}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{rootpy: Filling a TTree}
+    \frametitle{rootpy: Filling a Tree}
     \begin{columns}
         \column[t]{.45\textwidth}
         {\bf Create and handle branches automatically:}
@@ -397,7 +397,7 @@ Hist('name')
 
 
 \frame{
-    \frametitle{The future of rootpy}
+    \frametitle{Future Objectives}
 
     \begin{itemize}
         \itemsep=0.3cm
@@ -405,23 +405,20 @@ Hist('name')
         \item Full Python 3 support.
         \item Better integration with Jupyter Notebooks:
             \begin{itemize}
-                \item Full tab completion and helpful builtin commands like pylab.
-                \item Fetch documentation on-demand for a class/method/function.
+                \item Full tab completion and helpful builtin commands like pylab
+                \item Fetch documentation on-demand for a class/method/function
+                \item Inline ROOT plots that are interactive
                 \end{itemize}
                 Great to see progress in \href{https://root.cern.ch/doc/master/md_bindings_pyroot_ROOTaaS_README.html}{ROOTaaS}
                 and \href{https://root.cern.ch/js/}{jsROOT}
         \item Automatic wrapping of ROOT methods by parsing method signatures:
             \begin{itemize}
-                \item If a method expects a TColor, rootpy can accept any matplotlib/ROOT color
+                \item Automatic argument/return value conversion. If a method expects a TColor, rootpy can accept any matplotlib/ROOT color
                       and convert it into a TColor before passing to the ROOT method.
+                \item Automatically create descriptors from ROOT get/setters
                 \item Reduce the amount of code in rootpy.
                 \end{itemize}
-       \item RooFit and RooStats:
-           \begin{itemize}
-                \item Make RooArgSet set()-like and RooArgList list()-like?
-                \item Interface with NumPy (would live in root\_numpy).
-                \end{itemize}
-       \item rootpy version 1.0 will be the first ``stable'' release where we 
+        \item rootpy version 1.0 will be the first ``stable'' release where we 
            freeze the API and begin proper deprecation cycles if needed.
            {\bf rootpy is already very close!}
    \end{itemize}
