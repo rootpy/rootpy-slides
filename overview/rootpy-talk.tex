@@ -1,6 +1,7 @@
 \documentclass[10pt,professionalfonts,serif,usenames,dvipsnames,svgnames,table]{beamer}
 
 \include{preamble}
+\usepackage[scaled=0.85]{beramono}
 \include{phys_defs}
 
 \title{rootpy: Pythonic ROOT}
@@ -105,7 +106,7 @@
 }
 
 \frame{
-    \frametitle{rootpy: key concepts and design philosophy}
+    \frametitle{rootpy: Key Concepts and Design Philosophy}
 
     \begin{itemize}
         \itemsep=.3cm
@@ -273,7 +274,7 @@ hist.markercolor = 'salmon'
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Memory issues? Solved.}
+    \frametitle{Object Ownership}
     \begin{columns}
         \column[t]{.45\textwidth}
         {\bf PyROOT}
@@ -333,29 +334,17 @@ hist.markercolor = 'salmon'
 }
 
 \begin{frame}[fragile]
-    \frametitle{``How do I install rootpy?''}
-    \begin{enumerate}
-        \item First install ROOT with PyROOT enabled.
-        \item Clone the rootpy repository with git:
-\begin{pyglist}[language=bash,texcl=true,style=vim]
-git clone git://github.com/rootpy/rootpy.git
-\end{pyglist}
-\item Then install:
-\begin{pyglist}[language=bash,texcl=true,style=vim]
-cd rootpy
-python setup.py install --user
-\end{pyglist}
-\end{enumerate}
-\begin{itemize}
-    \item The easiest way to install a \href{https://pypi.python.org/pypi/rootpy}{released version}
-        is with \href{https://pypi.python.org/pypi/pip}{pip}:
-\begin{pyglist}[language=bash,texcl=true,style=vim]
-pip install --user rootpy
-\end{pyglist}
-        \item See the
-                \href{https://github.com/rootpy/rootpy/blob/master/README.rst}{README}
-                for full instructions.
-    \end{itemize}
+    \frametitle{How do I install rootpy?}
+    \begin{center}
+        Install a \href{https://pypi.python.org/pypi/rootpy}{released version}
+        with \href{https://pypi.python.org/pypi/pip}{pip}:
+        \vspace{.5cm}
+
+        \texttt{pip install -{}-user rootpy}
+        
+        \vspace{.5cm}
+See the \href{http://www.rootpy.org/install.html}{documentation} for full instructions.
+    \end{center}
 \end{frame}
 
 %\begin{frame}[fragile]
