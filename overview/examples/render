@@ -4,6 +4,12 @@ import subprocess
 import ROOT
 ROOT.gROOT.SetBatch()
 
+from argparse import ArgumentParser
+
+parser = ArgumentParser()
+parser.add_argument('files', nargs='*')
+args = parser.parse_args()
+
 preamble = """
 import ROOT
 ROOT.gROOT.SetBatch()
@@ -19,7 +25,21 @@ rootpy.log.basic_config_colorized()
 
 showlabel = False
 
-for dirpath, dirnames, filenames in os.walk('.'):
+def walk_files():
+    for dirpath, _, filenames in os.walk('.'):
+        yield dirpath, filenames
+
+def walk_args():
+    for filepath in args.files:
+        head, tail = os.path.split(filepath)
+        yield head, [tail]
+
+if args.files:
+    walk_func = walk_args
+else:
+    walk_func = walk_files
+
+for dirpath, filenames in walk_func():
     for filename in filenames:
         name, ext = os.path.splitext(filename)
         if ext != '.py':

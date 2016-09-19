@@ -47,7 +47,7 @@
     \frametitle{Scientific Python Applications}
     \begin{center}
     ``Can I really perform complicated analysis with Python?''\\
-    {\bf You certainly can!}
+    {\bf Short answer: Yup!}
     \end{center}
     \begin{itemize}
         \item \href{http://root.cern.ch/drupal/}{ROOT} with \href{http://root.cern.ch/drupal/content/pyroot}{PyROOT}
@@ -104,11 +104,12 @@
     the conventions$^*$ of the Python community and uses the language in the way it
     is intended to be used.''} 
   \vskip1mm
-  \hspace*\fill{\small--- \href{http://stackoverflow.com/a/25011492/1002176}{stackoverflow}}
+  \hspace*\fill{\small--- \href{http://stackoverflow.com/a/25011492/1002176}{on stackoverflow}, therefore true}
 \end{exampleblock}
 
 \vspace{.5cm}
-{\small * Capitalization is important. ROOTPy, RootPy, etc. are all unacceptable.}
+{\small * Capitalization is important. Never ROOTPy, RootPy, etc. \\
+See \href{https://www.python.org/dev/peps/pep-0008}{PEP8}}
 
 \end{center}
 }
@@ -205,7 +206,6 @@
     \begin{itemize}
         \item rootpy reduces ROOT's histogram classes down to Hist, Hist2D,
             Hist3D.
-        \item The appropriate ROOT base class is set {\em dynamically}:
 \begin{pyglist}[language=python,style=vs]
 >>> from rootpy.plotting import Hist2D
 >>> hist = Hist2D(10, 0, 1, 5, 0, 1, type='F')
@@ -216,13 +216,16 @@
 \begin{pyglist}[language=python,texcl=true,style=vs]
 hist.title = 'Fit Result'
 hist.fillstyle = 'solid'
-color = hist.linecolor
 \end{pyglist}
 \item Colors can also be set using hex, RGB tuples, or SVG names:
 \begin{pyglist}[language=python,texcl=true,style=vs]
 hist.fillcolor = (32, 178, 170)
 hist.linecolor = '#87cefa'
 hist.markercolor = 'salmon'
+\end{pyglist}
+\item Histograms can be indexed and sliced like multidimensional arrays
+\begin{pyglist}[language=python,texcl=true,style=vs]
+hist[:] = hist.Clone()[::-1]  # reverse bin content and errors
 \end{pyglist}
 \end{itemize}
 \end{frame}
@@ -248,7 +251,7 @@ hist.markercolor = 'salmon'
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{PyROOT: Opening a TFile}
+    \frametitle{PyROOT: ``Exception Handling''}
 
     \include{examples/file_open}
     \vspace{-.5cm}
@@ -256,7 +259,7 @@ hist.markercolor = 'salmon'
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{rootpy: Opening a TFile}
+    \frametitle{rootpy: Exception Handling}
 
     \include{examples/file_open_rootpy}
     \vspace{-.5cm}
@@ -282,7 +285,14 @@ hist.markercolor = 'salmon'
 
 \begin{frame}[fragile]
     \frametitle{rootpy: Filling a TTree}
-    \include{examples/tree_rootpy}
+    \begin{columns}
+        \column[t]{.45\textwidth}
+        {\bf Create and handle branches automatically:}
+        \include{examples/tree_rootpy}
+        \column[t]{.45\textwidth}
+        {\bf or with ``TreeModels'':}
+        \include{examples/tree_rootpy_with_model}
+    \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -305,7 +315,7 @@ hist.markercolor = 'salmon'
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Object Ownership}
+    \frametitle{Object Ownership and Garbage Collection}
     \begin{columns}
         \column[t]{.45\textwidth}
         {\bf PyROOT}
