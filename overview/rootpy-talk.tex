@@ -104,7 +104,7 @@
     the conventions$^*$ of the Python community and uses the language in the way it
     is intended to be used.''} 
   \vskip1mm
-  \hspace*\fill{\small--- \href{http://stackoverflow.com/a/25011492/1002176}{on stackoverflow}, therefore true}
+  \hspace*\fill{\small--- \href{http://stackoverflow.com/a/25011492/1002176}{on stackoverflow}}
 \end{exampleblock}
 
 \vspace{.5cm}
@@ -253,6 +253,10 @@ hist[:] = hist.Clone()[::-1]  # reverse bin content and errors
 \begin{frame}[fragile]
     \frametitle{PyROOT: ``Exception Handling''}
 
+ROOT is unable to open the file of course and emits an error message but an
+exception is not raised at this point leading to (sometimes difficult to
+interpret) issues downstream:
+
     \include{examples/file_open}
     \vspace{-.5cm}
     \include{examples/file_open_output}
@@ -261,21 +265,43 @@ hist[:] = hist.Clone()[::-1]  # reverse bin content and errors
 \begin{frame}[fragile]
     \frametitle{rootpy: Exception Handling}
 
+rootpy routes ROOT messages through Python's logging system and raises error
+messages as Python exceptions at the point of failure:
+
     \include{examples/file_open_rootpy}
     \vspace{-.5cm}
     \include{examples/file_open_rootpy_output}
     \begin{center}
         \vspace{-.5cm}
-    {\bf An exception is raised at the point of failure:
-    \verb|root_open()|}
+    {\bf An exception is raised at the point of failure!}
     \end{center}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{rootpy: Navigating a TFile}
-    \include{examples/file}
-    \vspace{-.5cm}
-    \include{examples/file_output}
+    \frametitle{rootpy: TFiles}
+    \begin{itemize}
+\item Simple dictionary-like access:
+\begin{pyglist}[language=python,style=vs]
+hist = myfile['histname']
+myfile['new_name'] = hist
+myfile.dirname.histname = hist
+\end{pyglist}
+    \item Can be used as context managers:
+\begin{pyglist}[language=python,style=vs]
+from rootpy.io import TemporaryFile
+with TemporaryFile() as f:
+    # current directory is f
+    pass
+# current directory restored to previous state
+# and f is closed (and deleted in this case)
+\end{pyglist}
+    \item Utilities such as walking the contents of a file:   
+\begin{pyglist}[language=python,style=vs]
+# recursively walk through the file
+for path, dirs, objects in f.walk():
+    print path, dirs, objects
+\end{pyglist}
+\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -392,8 +418,8 @@ Hist('name')
                 \end{itemize}
        \item RooFit and RooStats:
            \begin{itemize}
-                \item Wrap RooArgSet as set() and RooArgList as list()?
-                \item Create RooDataSets from NumPy arrays.
+                \item Make RooArgSet set()-like and RooArgList list()-like?
+                \item Interface with NumPy (would live in root\_numpy).
                 \end{itemize}
        \item rootpy version 1.0 will be the first ``stable'' release where we 
            freeze the API and begin proper deprecation cycles if needed.
