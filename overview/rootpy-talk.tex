@@ -26,7 +26,7 @@
     \end{center}
 
     \begin{itemize}
-        \itemsep=.3cm
+        \itemsep=.4cm
         \item PyROOT is mainly bindings (although with some pythonization).
         \item Python's dynamic nature provides {\bf many possibilities not
             currently realized by PyROOT}. One might argue a majority of these
@@ -34,42 +34,38 @@
             offer.}
         \item Certain tasks require awkward code and are error-prone.
             Similar workarounds are implemented by many people in multiple places.\\
-            {\bf Why not solve these issues once and for all?}
+            {\bf\em Why not solve these issues once and for all?}
         \item There is a lack of integration of ROOT with the vast and growing
-            ecosystem of scientific Python packages.\\ {\bf Why not enable users to
+            ecosystem of scientific Python packages.\\ {\bf\em Why not enable users to
             benefit from both the power of ROOT and what is offered by the
             scientific Python community?}
-        \end{itemize}
+    \end{itemize}
 }
 
 \frame{
     \frametitle{Scientific Python Applications}
     \begin{center}
-    ``Can I perform complicated analysis with Python?''\\
+    ``Can I really perform complicated analysis with Python?''\\
     {\bf You certainly can!}
     \end{center}
     \begin{itemize}
-        \item \href{http://root.cern.ch/drupal/}{ROOT} with
-            \href{http://root.cern.ch/drupal/content/pyroot}{PyROOT}
-        \item Interactive computing: \href{http://ipython.org/}{IPython}
-        \item Powerful and fast array manipulation:
-            \href{http://numpy.scipy.org/}{NumPy}
-        \item Feature-rich publication-quality plotting:
-            \href{http://matplotlib.org/}{matplotlib}
-        \item Efficiently and easily handle large amounts of data:
-            \href{http://www.pytables.org/moin}{PyTables}
+        \item \href{http://root.cern.ch/drupal/}{ROOT} with \href{http://root.cern.ch/drupal/content/pyroot}{PyROOT}
+        \item Interactive computing: \href{http://jupyter.org/}{Jupyter Notebook}
+        \item Powerful and fast array manipulation: \href{http://numpy.scipy.org/}{NumPy}
+        \item Feature-rich publication-quality plotting: \href{http://matplotlib.org/}{matplotlib}
+        \item Efficiently and easily handle large amounts of data: \href{http://www.pytables.org/moin}{PyTables}, \href{http://www.h5py.org/}{h5py}
         \item General scientific library: \href{http://www.scipy.org/}{scipy}
         \item Flexible data analysis and manipulation: \href{http://pandas.pydata.org/}{pandas}
         \item Symbolic mathematics: \href{http://sympy.org/}{sympy}
         \item Statistical models and tests: \href{http://statsmodels.sourceforge.net/}{statsmodels}
-        \item Fitting: \href{http://iminuit.github.com/iminuit/}{iminuit} and \href{http://cxc.harvard.edu/sherpa4.4/index.html}{sherpa}
+        \item Fitting: \href{https://iminuit.readthedocs.io}{iminuit} and \href{https://github.com/sherpa/sherpa}{sherpa}
         \item Astronomy: \href{http://www.astropy.org/}{astropy}
         \item Image processing: \href{http://scikit-image.org/}{scikit-image}
-        \item Machine learning:
-            \href{http://scikit-learn.org/stable/}{scikit-learn}
-        \item Search for packages on the
-            \href{https://pypi.python.org/pypi}{Python Package Index}
+        \item Machine learning: \href{http://scikit-learn.org/stable/}{scikit-learn}
     \end{itemize}
+    \begin{center}
+        Search for packages on the \href{https://pypi.python.org/pypi}{Python Package Index}
+    \end{center}
 }
 
 \frame{
@@ -82,13 +78,30 @@
         \item {\bf rootpy does not intend to recreate ROOT} or to {\em severely}
             alter the default behaviour of ROOT.
         \item {\bf rootpy is not an analysis framework}, but rather a library that
-            one's analysis framework might use.
+            your analysis code might use.
         \item rootpy provides an {\bf interface with the scientific Python
             packages}:
         \end{itemize}
         \begin{center}
             \includegraphics[width=.6\textwidth]{figs/rootpy-map.png}
-        \end{center}
+    \end{center}
+}
+
+{
+\setbeamercolor{background canvas}{bg=black,fg=white}
+\usebeamercolor[fg]{background canvas}
+
+\begin{frame}[plain]
+    \begin{center}
+    \includegraphics[height=\textheight]{figs/rootpy-github.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}[plain]
+    \begin{center}
+    \includegraphics[width=\textwidth]{figs/rootpy-stats.png}
+    \end{center}
+\end{frame}
 }
 
 \frame{
@@ -102,21 +115,22 @@
             functionality and objects may be decorated with additional properties.
         \item {\bf Object names and titles are optional}. Unspecified names default to
             UUIDs.
-        \item ROOT messages should be routed through Python's logging system
+        \item ROOT messages can be routed through Python's logging system
             with {\bf error messages raised as Python exceptions}.
         \item {\bf Python has a garbage collector but C++ does not:} this can lead to
             strange issues. rootpy addresses these problems.
-        \item Anywhere Python is typically slow we intend to use
+        \item Anywhere Python is typically slow we try to use
             {\bf compiled C extension modules}. Through the
             \href{https://github.com/rootpy/root\_numpy}{root\_numpy}
             package, rootpy provides very fast conversion of ROOT Trees into
             NumPy arrays as well as efficiently filling ROOT histograms with
             NumPy arrays.
-        \end{itemize}
+        \item {\bf rootpy can be dropped into existing code.}
+    \end{itemize}
 }
 
 \frame{
-    \frametitle{``What does rootpy offer?''}
+    \frametitle{What does rootpy offer?}
 
     \begin{center}
     \rowcolors[]{1}{blue!20}{blue!10}
@@ -125,7 +139,7 @@
             style subclasses with additional pythonizations,
             including a matplotlib interface. \\
         {\bf rootpy.tree} & trees, chains, tree objects, tree models, cuts. \\
-        {\bf rootpy.io} & file and directory subclasses, utilities. \\
+        {\bf rootpy.io} & file and directory subclasses, utilities, pickler. \\
         {\bf rootpy.logger} & route ROOT messages through Python's
             logging module. ROOT error messages become Python exceptions. \\
         {\bf rootpy.memory} & utilities for monitoring TObject deletions
@@ -135,6 +149,7 @@
         {\bf rootpy.stl} & automatic STL dictionary compilation and caching. \\
         {\bf rootpy.root2hdf5} & conversion of ROOT files into HDF5. \\
         {\bf rootpy.context} & utilities for managing ROOT's global state. \\
+        {\bf rootpy.stats} & RooStats, RooFit, HistFactory. \\
         \multicolumn{2}{c}{\ldots and more \ldots} \\
         \multicolumn{2}{c}{See the
             \href{https://github.com/rootpy/root\_numpy}{root\_numpy}
@@ -290,29 +305,30 @@ hist.markercolor = 'salmon'
     \frametitle{The future of rootpy}
 
     \begin{itemize}
+        \itemsep=0.3cm
         \item Larger documentation coverage and more examples. {\bf This is important!}
-        \item Python 3 support.
-        \item Better integration with the IPython prompt:
+        \item Python 3 support. This really depends on underlying support in PyROOT!
+        \item Better integration with Jupyter Notebooks:
             \begin{itemize}
                 \item Full tab completion and helpful builtin commands like pylab.
                 \item Fetch documentation on-demand for a class/method/function.
                 \end{itemize}
+                Great to see progress in \href{https://root.cern.ch/doc/master/md_bindings_pyroot_ROOTaaS_README.html}{ROOTaaS}
+                and \href{https://root.cern.ch/js/}{jsROOT}
         \item Automatic wrapping of ROOT methods by parsing method signatures:
             \begin{itemize}
                 \item If a method expects a TColor, rootpy can accept any matplotlib/ROOT color
                       and convert it into a TColor before passing to the ROOT method.
                 \item Reduce the amount of code in rootpy.
                 \end{itemize}
-       \item TMVA:
-           \begin{itemize}
-                \item Ability to feed TMVA classifiers NumPy arrays.
-                \end{itemize}
        \item RooFit and RooStats:
            \begin{itemize}
                 \item Wrap RooArgSet as set() and RooArgList as list()?
                 \item Create RooDataSets from NumPy arrays.
                 \end{itemize}
-       \item rootpy should serve as a {\bf testing ground for new ideas}.
+       \item rootpy version 1.0 will be the first ``stable'' release where we 
+           freeze the API and begin proper deprecation cycles if needed.
+           {\bf rootpy is already pretty close!}
    \end{itemize}
 }
 

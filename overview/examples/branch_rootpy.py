@@ -1,7 +1,7 @@
 # test
 from rootpy.io import root_open
 from rootpy.tree import Tree, TreeModel
-from rootpy.types import FloatCol
+from rootpy.tree import FloatCol
 from random import gauss
 
 class Event(TreeModel):

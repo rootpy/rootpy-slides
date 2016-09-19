@@ -1,8 +1,8 @@
 # test
 from rootpy.tree import Tree
 from rootpy.tree import TreeModel
-from rootpy.types import FloatCol
-from rootpy.types import IntCol
+from rootpy.tree import FloatCol
+from rootpy.tree import IntCol
 
 class FourVect(TreeModel):
     eta = FloatCol(default=-1111.)
