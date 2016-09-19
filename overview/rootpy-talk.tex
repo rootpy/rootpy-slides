@@ -100,7 +100,12 @@
 
 \begin{frame}[plain]
     \begin{center}
-    \includegraphics[width=\textwidth]{figs/rootpy-stats.png}
+    \includegraphics[width=\textwidth]{figs/rootpy-stats.png}\\
+    
+    \vspace{1cm}
+    {\bf
+    18,808 lines of code\\
+    Over 3800 commits in 535 pull requests}
     \end{center}
 \end{frame}
 }
@@ -301,6 +306,33 @@ hist.markercolor = 'salmon'
 \end{center}
 \end{frame}
 
+\begin{frame}[fragile]
+    \frametitle{rootpy.ROOT: drop-in ``import ROOT'' replacement}
+
+    \begin{itemize}
+    \itemsep=0.3cm
+\item Harmonize access to ROOT and rootpy classes and take advantage of rootpy classes automatically.
+
+\item Replace \framebox{\texttt{import ROOT}} with \framebox{\texttt{from rootpy import ROOT}}
+
+\item Maintain backward compatibility with existing use of ROOT's classes.
+
+\item ROOT classes are automatically cast to their rootpy form after the constructor in ROOT has been called:
+    \begin{minted}{python}
+>>> from rootpy import ROOT
+>>> ROOT.TH1F('name', 'title', 10, 0, 1)
+Hist('name')
+    \end{minted}
+
+\item Also access rootpy classes under this same module without needing to remember where to import them from in rootpy:
+    \begin{minted}{python}
+>>> ROOT.Hist(10, 0, 1, name='name', type='F')
+Hist('name')
+    \end{minted}
+\end{itemize}
+
+\end{frame}
+
 
 \frame{
     \frametitle{The future of rootpy}
@@ -329,7 +361,7 @@ hist.markercolor = 'salmon'
                 \end{itemize}
        \item rootpy version 1.0 will be the first ``stable'' release where we 
            freeze the API and begin proper deprecation cycles if needed.
-           {\bf rootpy is already pretty close!}
+           {\bf rootpy is already very close!}
    \end{itemize}
 }
 
